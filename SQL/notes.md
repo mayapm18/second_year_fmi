@@ -1,5 +1,14 @@
 # 🧠 SQL SERVER NOTES
 
+## SUM UP
+* **Database Structure:** `.mdf`, `.ndf`, `.ldf` files store data and logs.  
+* **SQL Commands:** DML (`SELECT`, `INSERT`, `UPDATE`, `DELETE`), DDL (`CREATE`, `ALTER`, `DROP`).  
+* **Constraints & Keys:** `PRIMARY`, `FOREIGN`, `UNIQUE`, `CHECK`, `NOT NULL` ensure data integrity.  
+* **Normalization:** Use 1NF–5NF to remove redundancy and maintain consistency.  
+* **Administration:** Manage permissions (`GRANT`, `REVOKE`, `DENY`) and perform backups (Full, Diff, Log).
+
+---
+
 ## 1️⃣ Understanding Core Database Concepts
 
 - **Database** → organized data collection  
@@ -96,12 +105,6 @@
 - **Primary Key** → unique row ID  
 - **Foreign Key** → link to another table  
 - **Composite Key** → multiple columns as key  
-
-### 🔹 Indexes
-- Speed up queries  
-- **Clustered** → physical order (1 per table)  
-- **Non-Clustered** → logical order, uses pointers  
-
 ---
 
 ## 5️⃣ Administrating a Database
@@ -117,12 +120,3 @@
 - **Transaction Log Backup** → since last log backup  
 - **Partial / File Backups** → specific files or filegroups  
 - **Restore** → recover data  
-
----
-
-## ⚡ Quick Recap
-✅ SQL = structure + data + security  
-✅ Know DDL vs DML  
-✅ Understand JOINs & normalization  
-✅ Secure with roles + permissions  
-✅ Backup often 🚀
