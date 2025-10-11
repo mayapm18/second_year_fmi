@@ -1,6 +1,8 @@
 Готин човек е направил тези записки: 
 [wolfram](https://github.com/socratica/wolfram/tree/06aa3ecc0a829e17ba60650ff6dc168aaee5c584/lessons)
 
+За да разчетеш записките: [Cloud](https://www.wolframcloud.com/)
+
 Учебен план:
 
 10 weeks Wolfram
