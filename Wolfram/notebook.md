@@ -1,3 +1,6 @@
+Готин човек е направил тези записки: 
+[wolfram](https://github.com/socratica/wolfram/tree/06aa3ecc0a829e17ba60650ff6dc168aaee5c584/lessons)
+
 Учебен план:
 
 10 weeks Wolfram
@@ -5,3 +8,6 @@
 Изпити: 
     4 домашни  -  WM
     ⅓ (WM домашн) + ⅓  (WM изпит) + ⅓ R
+
+
+    
