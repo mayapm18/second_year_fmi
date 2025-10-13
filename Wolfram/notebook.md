@@ -3,6 +3,8 @@
 
 За да разчетеш записките: [Cloud](https://www.wolframcloud.com/)
 
+[fast-introduction-for-math-students](https://www.wolfram.com/language/fast-introduction-for-math-students/en///)
+
 Учебен план:
 
 10 weeks Wolfram
