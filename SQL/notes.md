@@ -120,3 +120,4 @@
 - **Transaction Log Backup** → since last log backup  
 - **Partial / File Backups** → specific files or filegroups  
 - **Restore** → recover data  
+
