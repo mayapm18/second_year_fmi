@@ -10,6 +10,14 @@ GROUP BY -- Групиране
 HAVING -- Филтриране на групи
 ORDER BY -- Сортиране на крайния резултат
 ```
+
+SQL USING Clause
+````dash
+SELECT column_list
+FROM table1
+JOIN table2
+USING (common_column);
+````
 ------------
 ```bash
 DISTINCT - remove duplicate
