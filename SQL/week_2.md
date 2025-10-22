@@ -1,141 +1,170 @@
-# TEST week 2
 
-<img width="960" height="720" alt="image" src="https://github.com/user-attachments/assets/51c72bc6-2616-4542-bcc2-5579b3f654fb" />
+# 🧠 TEST Week 2
 
-SQLOS - server (най-новата версия е от 2022)
--релационна система за база от данни 
+![image](https://github.com/user-attachments/assets/51c72bc6-2616-4542-bcc2-5579b3f654fb)
 
-QueryProcesser- заявки
+---
 
-SQL Server Management Studio - къде ще работим
+## 🖥️ SQL Server Overview
 
-SQL Server components are not always instantce-aware 
+### SQLOS
+- Server (най-новата версия е от **2022**)
+- Релационна система за база от данни  
 
-Dev instance - Взима името на компютъра
+### Query Processor
+- Отговаря за **обработката на заявки**
 
-DEV: hostname\Server1 - задаваме име
+### SQL Server Management Studio (SSMS)
+- Средата, в която ще работим
 
-Enterprise - има всичко
+### Instances
+- SQL Server components **are not always instance-aware**
+- **Dev instance** → взима името на компютъра  
+  - Пример: `hostname\Server1`
+- **Enterprise Edition** → пълна версия, включва всичко  
+- **Developer Edition** → безплатна, пълна версия на Enterprise  
+- **Express Edition** → безплатна, но силно ограничена
 
-Безплатните версии са developer(пълнната версия на enterprise) & express(много е орязано)
+---
 
-Аzure SQL Datebase - единична база и не знаем къде се намира сървъра
+## ☁️ Azure SQL
 
-👇
+| Вид | Достъп | Характеристика |
+|------|---------|----------------|
+| **Azure SQL Database** | Само база | Не знаем къде се намира сървърът |
+| **Azure SQL Managed Instance** | Достъп до instance | Нямаме достъп до повечето компоненти |
 
-Azure SQL Managed Instance - имаме достъп до instance, но нямаме достъп до повечето ?компоненти?
+---
 
-------------------
+## 📚 Какво ще учим
 
-## С какво ще се занимаваме:
+- Таблици: `Customers`, `Orders`
+- Ще ни трябва теория на множествата
 
-- table : Customers
-- table : Orders
+**Основни понятия:**
+- **SQL Server** → client-server система  
+- **T-SQL** → set-based език  
+- Разширение на файловете: `.sql`  
+- `GO` → разделя batch-ове (не е задължителен, но подрежда кода
 
-Ще ни трябва теория на множествата. 
-- SQL Server - client server
-- T-SQL : set-based language, ".sql", GO keyword separates batches( то може да си работи и без GO, но за да е по-подредено, го ползваме)
+> ⚠️ `Execute` ≠ Debug (F5)  
+> Маркирам кода, който искам да изпълня, и натискам *Execute*.
 
+---
 
-!Execute не е Debug (F5)
-// Маркирам кода който искам да пусна и пускам Execute
+## 🪪 Влизане в SSMS
 
-Open: SSMS ->(инструкции как да влезна, ако може да дообавиш) 
+**Стъпки:**
+1. Отвори **SQL Server Management Studio**
+2. В полето **Server name** → въведи `hostname\Server1` (примерно)
+3. Избери **Authentication: Windows**
+4. Натисни **Connect**
 
-Ако съм администартор мога да споделям база от Security 
+> Ако си администратор — можеш да споделяш база чрез **Security → Logins → New Login**.
 
-За интервюта: 
-1. Как може най лесно последно да видиш кога се е актуаллизирала някоя база?
+---
 
-Отговор: Трябва да си напишем заявка, от Propaties
+## 💬 Интервю въпроси
 
+1. **Как може най-лесно да видим кога последно е актуализирана база?**  
+   👉 От *Properties* → трябва да се напише заявка за това.
 
-2. За коя база може да работи (нещо си ако може да помогнеш) 
+2. **В коя база се пази информация за задачи и джобове (jobs)?**  
+   👉 В базата **`msdb`**
 
-Отговор: MSDB
+---
 
----------------
-!!FINAL QUIZ!!
+## 🧩 FINAL QUIZ
 
-SQL is declarative: 
--decribe what yo want, not the individual steps
---------------
+### SQL is Declarative
+> Describe **what** you want, not **how** to do it.
 
-### Priority: DML → DDL → DCL
-## DML
--Data Manipulation Language
+---
 
--SELECT, INSERT, UPDATE, DELETE
+## 🔺 SQL Command Categories (Priority Order)
 
--✨Focus of this course - especially SELECT
+| Priority | Category | Meaning | Examples |
+|-----------|-----------|----------|-----------|
+| 1️⃣ | **DML** | Data Manipulation Language | `SELECT`, `INSERT`, `UPDATE`, `DELETE` |
+| 2️⃣ | **DDL** | Data Definition Language | `CREATE`, `ALTER`, `DROP` |
+| 3️⃣ | **DCL** | Data Control Language | `GRANT`, `REVOKE`, `DENY` |
 
-## DDL
--Data Definition Language
+✨ Focus of this course → **DML**, especially `SELECT`
 
-CREATE, ALTER, DROP
+---
 
-##DCL 
--Data Control Language
-
--GRANT, REVOKE, DENY
-
----------------
-
-### T-SQL Language Elements: Predicates and Operators
+## 🧮 T-SQL Language Elements
 
 | Category | Elements |
-|----------|----------|
-| **Predicates** | ALL, ANY, BETWEEN, IN, LIKE, OR, SOME |
-| **Comparison Operators** | =, <>, !=, >, <, >=, <= |
-| **Logical Operators** | AND, OR, NOT |
-| **Arithmetic Operators** | +, -, *, /, % |
-| **Concatenation** | + |
+|-----------|-----------|
+| **Predicates** | `ALL`, `ANY`, `BETWEEN`, `IN`, `LIKE`, `OR`, `SOME` |
+| **Comparison Operators** | `=`, `<>`, `!=`, `>`, `<`, `>=`, `<=` |
+| **Logical Operators** | `AND`, `OR`, `NOT` |
+| **Arithmetic Operators** | `+`, `-`, `*`, `/`, `%` |
+| **Concatenation** | `+` |
 
+---
+
+## 🧱 Basic Query Syntax
+
+```sql
+SELECT *          -- Връща всичко
+FROM Customer     -- Източник на данните
+WHERE <условие>;  -- Условие за филтриране
 ```
-SELECT* - Връща всичко което искаме
-FROM - Customor
-WHERE (условие)
+
+### В SQL има три възможни логически отговора:
+- `TRUE`
+- `FALSE`
+- `NULL` → няма информация
+
+---
+
+## 🧩 Променливи
+
+Името и типът на променливата трябва да се декларират:
+
+```sql
+DECLARE @search VARCHAR(30) = 'Match%'
 ```
-Във SQL има три опции за отговор: 
-- True
-- False
-- NUll (няма информация, не знаем дали има информация)
 
------------
-Името на променливата и тиа от данни трябва да декларираме
-````
-DECLARE @serch varchar(30) = 'Match%'
-````
+---
 
-````
-SELECT YEAR(ordedate) + 1 ....
-SELECT qty* unitprince ...
-````
------------
--Mожем да коментираме в SQL: 
+## 🧮 Примери
 
-1 начин :
-````
- /*
-    hahahhahahaha
- */
+```sql
+SELECT YEAR(orderdate) + 1 AS next_year
+FROM Orders;
 
-````
-2 начин:
-````
---hahahhah
-````
---------------------
-Това е подредбата в която пишем SQL Server:
-# Elements of a SELECT Statement
+SELECT qty * unitprice AS total_price
+FROM OrderDetails;
+```
 
-| **Element** | **Expression**        | **Role**                                  |
-|--------------|----------------------|-------------------------------------------|
-| SELECT       | `<select list>`      | Defines which columns to return           |
-| FROM         | `<table source>`     | Defines table(s) to query                 |
-| WHERE        | `<search condition>` | Filters returned data using a predicate   |
-| GROUP BY     | `<group by list>`    | Arranges rows by groups                   |
-| HAVING       | `<search condition>` | Filters groups by a predicate             |
-| ORDER BY     | `<order by list>`    | Sorts the results                         |
+---
 
+## 💬 Коментари в SQL
 
+**Многострочен:**
+```sql
+/*
+  Това е коментар
+*/
+```
+
+**Еднострочен:**
+```sql
+-- Това също е коментар
+```
+
+---
+
+## 🏗️ Elements of a SELECT Statement
+
+| **Element** | **Expression** | **Role** |
+|--------------|----------------|----------|
+| `SELECT` | `<select list>` | Кои колони да се върнат |
+| `FROM` | `<table source>` | От коя таблица |
+| `WHERE` | `<search condition>` | Филтриране на редове |
+| `GROUP BY` | `<group by list>` | Групиране |
+| `HAVING` | `<search condition>` | Филтриране на групи |
+| `ORDER BY` | `<order by list>` | Подреждане на резултата |
