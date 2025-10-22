@@ -32,6 +32,8 @@ WHERE Name LIKE '%son' -- "Johnson", "Jackson", "Wilson"
 -- Намира всички имена, които съдържат "ana"
 WHERE Name LIKE '%ana%' -- "Ana", "Diana", "Banana"
 ```
+<img width="1080" height="1471" alt="image" src="https://github.com/user-attachments/assets/033e76ef-5f35-4462-9f13-fddf40b3a31f" />
+
 # Типове данни в SQL Server
 
 ## CHAR vs VARCHAR
