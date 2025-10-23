@@ -1,6 +1,7 @@
 # 🧠 SQL SERVER NOTES
 
 *Hyper-V Manager*
+Password : 019-work, Pa55w.rd
 
 ------------------------
 ## SUM UP
