@@ -135,7 +135,51 @@ Converting Data Between Data Types
   - Temporary Tables:
     - #prefix (Локална и видима само за нас, след това изчезва)- не прекалявай с многото създаване на нови таблици, затова почистваме -> DROP
     - ##prefix (Останалите също може да я виждат)
-   
 
+------------------------------------------
 
-  
+| Clause     | Expression         |
+|------------|--------------------|
+| SELECT     | <select list>      |
+| FROM       | <table or view>    |
+| WHERE      | <search condition> |
+| GROUP BY   | <group by list>    |
+| ORDER BY   | <order by list>    |
+
+----------------------------------------
+
+````
+SELECT *
+FROM Sales.Customers;(може да са задължителни да завършва кода с ;)
+````
+
+````
+SELECT companyname, country
+FROM Sales.Customers;
+````
+
+Уникалност = DISTINCT
+Премахване на редовете след : WHERE, HAVING, GROUP BY
+
+Calculations in the SELECT Clause:
+
+| Operator | Description           |
+|----------|-----------------------|
+| +        | Add or concatenate    |
+| -        | Subtract              |
+| *        | Multiply              |
+| /        | Divide                |
+| %        | Modulo                |
+
+-------------------
+The Impact of Logical Processing Order on Aliases
+- FROM, WHERE, HAvING clauses processed before SELECT
+- Aliases createed in SELECT clause only visible to ORDER BY
+- Could repeated elswhere in query
+
+**CASE**
+
+-Simple CASE
+  - казваме една определена колона, фиксирано е от нас( WHEN .... THEN ... True/False(има точен match))
+- Search CASE
+  - Имаме повече условия/категория  (WHEN .....{<,>} THEN.....)
