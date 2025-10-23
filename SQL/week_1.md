@@ -1,5 +1,8 @@
 # 🧠 SQL SERVER NOTES
 
+*Hyper-V Manager*
+
+------------------------
 ## SUM UP
 * **Database Structure:** `.mdf`, `.ndf`, `.ldf` files store data and logs.  
 * **SQL Commands:** DML (`SELECT`, `INSERT`, `UPDATE`, `DELETE`), DDL (`CREATE`, `ALTER`, `DROP`).  
