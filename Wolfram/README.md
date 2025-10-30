@@ -5,6 +5,8 @@
 
 [fast-introduction-for-math-students](https://www.wolfram.com/language/fast-introduction-for-math-students/en///)
 
+[YouTube](https://www.youtube.com/watch?v=el_dbLPcXsI&list=PLi01XoE8jYohv6KlFfGXTZwjjZtg88VMz&index=6)
+
 Учебен план:
 
 10 weeks Wolfram
