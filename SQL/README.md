@@ -2,6 +2,8 @@
 
 [LeetCode link](https://leetcode.com/studyplan/top-sql-50/)
 
+[YouTube](https://www.youtube.com/watch?v=el_dbLPcXsI&list=PLi01XoE8jYohv6KlFfGXTZwjjZtg88VMz&index=6)
+
 ```bash
 SELECT -- Кои колони искаме да видим
 FROM   -- От коя таблица
