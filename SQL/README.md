@@ -47,10 +47,13 @@ WHERE Name LIKE '%ana%' -- "Ana", "Diana", "Banana"
 
 Meaning: date1 - date2 (difference in days)
 
-Used like:
+Used like: 
 ````sql
 ON DATEDIFF(w1.recordDate, w2.recordDate) = 1
 ````
+DATEDIFF(...)=1 means “next day”
+
+--------
 # Типове данни в SQL Server
 
 ## CHAR vs VARCHAR
