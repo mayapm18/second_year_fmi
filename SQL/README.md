@@ -42,6 +42,15 @@ WHERE Name LIKE '%ana%' -- "Ana", "Diana", "Banana"
 ```
 <img width="1080" height="1471" alt="image" src="https://github.com/user-attachments/assets/033e76ef-5f35-4462-9f13-fddf40b3a31f" />
 
+-------------------
+## DATEDIFF
+
+Meaning: date1 - date2 (difference in days)
+
+Used like:
+````sql
+ON DATEDIFF(w1.recordDate, w2.recordDate) = 1
+````
 # Типове данни в SQL Server
 
 ## CHAR vs VARCHAR
