@@ -5,16 +5,10 @@
 #timestamp (float)
 
 
-SELECT s.machine_id ,AVG(e.timestamp - s.timestamp) AS processing_time
+SELECT s.machine_id ,ROUND(AVG(e.timestamp - s.timestamp),3) AS processing_time
 FROM Activity s, Activity e
 WHERE s.activity_type = 'start' AND e.activity_type = 'end'
 AND s.machine_id = e.machine_id
 AND s.process_id = e.process_id
 GROUP BY machine_id
 
-#output
-    -- | machine_id | processing_time    |
-    -- | ---------- | ------------------ |
-    -- | 0          | 0.8939998745918274 |
-    -- | 1          | 0.9949999451637268 |
-    -- | 2          | 1.4560000896453857 |
