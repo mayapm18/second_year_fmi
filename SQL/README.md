@@ -53,7 +53,13 @@ Used like:
 ON DATEDIFF(w1.recordDate, w2.recordDate) = 1
 ````
 DATEDIFF(...)=1 means “next day”
+-----------
 
+ROUND(...., 3) = 0,abc
+
+````sql
+SELECT s.machine_id note how there is s. - this is telling SQL which table to take the machine_id from.
+````
 
 ---------------------
 # Типове данни в SQL Server
