@@ -41,6 +41,14 @@ WHERE Name LIKE '%son' -- "Johnson", "Jackson", "Wilson"
 -- Намира всички имена, които съдържат "ana"
 WHERE Name LIKE '%ana%' -- "Ana", "Diana", "Banana"
 ```
+
+````sql
+INNER JOIN = A ∩ B   (intersection)
+LEFT JOIN = A + (A ∩ B)
+RIGHT JOIN = B + (A ∩ B)
+FULL OUTER JOIN = A ∪ B   (union)
+CROSS JOIN = every row in A paired with every row in B. Everything × Everything
+````
 <img width="1080" height="1471" alt="image" src="https://github.com/user-attachments/assets/033e76ef-5f35-4462-9f13-fddf40b3a31f" />
 
 --------
