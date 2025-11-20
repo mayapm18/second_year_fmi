@@ -37,6 +37,14 @@
 
 ---
 
+If you want, I can also add:
+
+* Practice questions
+* Flashcards
+* A more detailed breakdown of each lesson
+
+## Expanded Details
+
 ### Module 17: Implementing Error Handling — Detailed Breakdown
 
 #### 1. How T-SQL Errors Work
@@ -153,7 +161,16 @@ END CATCH
 
 ---
 
+If you'd like, I can now:
+
+* Add diagrams (flowcharts for TRY/CATCH or transaction flow)
+* Add practice scenarios with answers
+* Add code examples for every concept
+* Add more potential exam / interview questions
+
 ## Additional Potential Questions
+
+## Answers to Potential Questions
 
 ### Module 17 – Error Handling
 
@@ -178,6 +195,8 @@ END CATCH
 8. Why must COMMIT always be in the TRY block and ROLLBACK always in the CATCH block?
 9. Describe a scenario where partial commits could cause data corruption.
 
+If you want, I can add **answers**, **practice exercises**, or turn these into a **mock exam**.
+
 ### Module 17 – Error Handling (Answers)
 
 1. **TRY/CATCH handles run‑time errors** (e.g., constraint violations). It does **not** handle compile-time errors, parse errors, or batch-aborting errors that occur before TRY executes.
@@ -200,3 +219,136 @@ END CATCH
 7. SAVE TRAN creates a **savepoint**, allowing partial rollback—useful in complex procedures where part of a transaction may fail.
 8. COMMIT must be in TRY to prevent committing when errors occur; ROLLBACK must be in CATCH to ensure cleanup after failure.
 9. Example: Deducting inventory from one table and inserting into another—if the insert fails but the deduction succeeds, inventory is corrupted unless a transaction rolls back both.
+----------------------------
+
+# Cheat Sheet: Modules 17 & 18 (Error Handling + Transactions)
+
+## 🚨 Module 17 — Error Handling Cheat Sheet
+
+### **TRY/CATCH Basics**
+
+```
+BEGIN TRY
+   -- code
+END TRY
+BEGIN CATCH
+   -- error handling
+END CATCH
+```
+
+### **What TRY/CATCH DOES catch:**
+
+* Runtime errors (e.g., constraint violations)
+* Foreign key issues
+* Divide-by-zero
+* Deadlocks (caught in CATCH after retry)
+
+### ❌ **What TRY/CATCH does NOT catch:**
+
+* Syntax errors
+* Compile-time errors
+* Missing objects
+* Batch-aborting errors before TRY executes
+
+### **Error Functions inside CATCH:**
+
+* `ERROR_MESSAGE()` – text of the error
+* `ERROR_LINE()` – line where error occurred
+* `ERROR_NUMBER()` – error code
+* `ERROR_PROCEDURE()` – stored procedure name
+* `ERROR_SEVERITY()`
+* `ERROR_STATE()`
+
+### **THROW (recommended)**
+
+```
+THROW;            -- rethrow original error
+THROW 50001, 'Error message', 1;   -- custom error
+```
+
+* Simpler than RAISERROR
+* Automatically stops execution
+* Always severity 16
+
+### **RAISERROR (legacy)**
+
+* More flexible (custom severity), but deprecated.
+
+---
+
+## 🔄 Module 18 — Transactions Cheat Sheet
+
+### **Basic Transaction Pattern**
+
+```
+BEGIN TRY
+    BEGIN TRAN
+
+    -- work
+
+    COMMIT TRAN
+END TRY
+BEGIN CATCH
+    IF @@TRANCOUNT > 0 ROLLBACK TRAN;
+    THROW;
+END CATCH
+```
+
+### **Key Concepts**
+
+* **Atomicity** — all or nothing
+* **Consistency** — data integrity preserved
+* **Isolation** — transactions do not affect each other
+* **Durability** — committed changes stay
+
+### **Transaction Commands**
+
+* `BEGIN TRAN` – start
+* `COMMIT` – save everything
+* `ROLLBACK` – undo everything
+* `SAVE TRAN SavePoint` – partial rollback
+
+### **SET XACT_ABORT ON**
+
+* Automatically rolls back on *any* runtime error
+* Good for: bulk operations, distributed transactions
+
+```
+SET XACT_ABORT ON;
+```
+
+### **Nested Transactions**
+
+* SQL Server tracks depth via `@@TRANCOUNT`
+* Only outermost COMMIT writes to disk
+* ANY ROLLBACK undoes *everything*
+
+### **SAVEPOINT Example**
+
+```
+BEGIN TRAN
+INSERT ...
+SAVE TRAN step1
+UPDATE ...
+ROLLBACK TRAN step1
+COMMIT
+```
+
+---
+
+## ⚡ Quick Rules to Remember
+
+### Error Handling Rules
+
+✔ THROW inside CATCH to propagate errors
+✔ TRY/CATCH only catches runtime errors
+✔ RAISERROR is old; THROW is preferred
+✔ Error functions only work **inside CATCH**
+
+### Transaction Rules
+
+✔ Always COMMIT in TRY
+✔ Always ROLLBACK in CATCH
+✔ Check @@TRANCOUNT before committing
+✔ SET XACT_ABORT ON prevents partial updates
+
