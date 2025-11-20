@@ -37,14 +37,6 @@
 
 ---
 
-If you want, I can also add:
-
-* Practice questions
-* Flashcards
-* A more detailed breakdown of each lesson
-
-## Expanded Details
-
 ### Module 17: Implementing Error Handling — Detailed Breakdown
 
 #### 1. How T-SQL Errors Work
@@ -160,13 +152,6 @@ END CATCH
 * Relying on TRY/CATCH for compile‑time errors (they won't be caught).
 
 ---
-
-If you'd like, I can now:
-
-* Add diagrams (flowcharts for TRY/CATCH or transaction flow)
-* Add practice scenarios with answers
-* Add code examples for every concept
-* Add more potential exam / interview questions
 
 ## Additional Potential Questions
 
