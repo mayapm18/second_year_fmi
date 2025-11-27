@@ -318,3 +318,45 @@ CREATE TABLE Orders (ID UNIQUEIDENTIFIER DEFAULT NEWSEQUENTIALID())
 - Елиминира table scans
 
 **💡 Запомни: Heap таблици са лесни, но бавни. Винаги използвай кластериран индекс за по-добра производителност!**
+
+
+
+Quizz:
+
+What does the FILL FACTOR setting control in SQL Server?
+d.The amount of free space left on each index page during index creation or rebuild.
+
+Can you have more than one clustered index on a table?
+No
+
+What is a filtered index in SQL Server? 
+An index created on a subset of rows in a table, defined by a filter predicate.
+
+When having a composite index is column order A,B the same as B,A?
+NO
+
+What is a clustered index in SQL Server?
+An index that determines the physical order of data in the table
+
+What is a covering index?
+Non-clustered index including all columns returned by a query. 
+
+What is a heap table?
+Table without clustered index.
+
+Can PAD_INDEX use a different percentage than FILL FACTOR?
+YES
+
+What is the main benefit of covering an index?
+It avoids table access.
+
+Which of the following is NOT an option of Query Store? 
+Max concurrent sessions, 
+Max CPU
+
+What does external fragmentation mean?
+Pages are not in the logical sequence
+
+Which index property has the highest priory to the query optimizer when choosing an index?
+Selectivity
+
