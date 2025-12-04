@@ -110,3 +110,68 @@ RETURN (SELECT * FROM Employees WHERE Active = 1);
 
 ```
 
+
+
+QUiz:
+
+What are the benefits of Stored Procedures? 
+a.
+Can enhance the security of an application
+b.
+Can improve performance
+c.
+Create once, but call many times and from many applications
+
+What is true about the stored procedures? 
+a.
+Can have output parameters
+b.
+Can be created in managed code or Transact-SQL
+d.
+Can have input parameters
+
+What happens when you update a view?
+a.
+Base table data changes
+
+Parameter sniffing can cause:
+c.
+A query plan optimized for one value to perform poorly for others
+
+What is the benefit of parameters in stored procedures?
+b.
+They allow dynamic input values
+
+What is a view? 
+a.
+A view is a stored query expression
+c.
+A select query from one or multiple tables
+d.
+A virtual table that combines or filter other tables
+
+Which of the following is a limitation of a view in SQL Server?
+d.
+A view cannot have an ORDER BY clause unless it is used with TOP.
+
+What is the purpose of a view in SQL Server?
+d.
+To present relevant information to users and hide complexity
+
+What is required for creating an indexed view?
+c.
+The view must be created WITH SCHEMABINDING
+
+Which statement is valid for stored procedures?
+c.
+Stored procedures can modify data but not schema.
+
+What is true about altering a stored procedure?
+c.
+ALTER PROCEDURE keeps permissions and updates the logic
+
+Indexed view improves 
+a.
+Execution of SELECT queries with aggregation
+d.
+Read performance
