@@ -1,3 +1,142 @@
+# SQL Server Architecture, Scheduling, and Waits – Key Notes
+
+## 1. **SQL Server Components and SQLOS**
+- **SQLOS** (SQL Server Operating System):
+  - Provides OS-level functions to SQL Server (memory management, scheduling, I/O, locking, etc.).
+  - Allows SQL Server to use **non-preemptive scheduling** (cooperative multitasking).
+  - Collects performance metrics exposed via **Dynamic Management Views (DMVs)**.
+
+- **Database Engine Layers**:
+  - **Query Execution Layer** (Relational Engine): Parsing, optimization, execution.
+  - **Storage Engine Layer**: Data storage, caching, transaction management.
+  - **SQLOS Layer**: Low-level resource management.
+
+- **Connection Protocols**:
+  - Shared Memory, Named Pipes, TCP/IP.
+  - Application layer uses **Tabular Data Stream (TDS)**.
+
+---
+
+## 2. **CPU Architecture – SMP vs. NUMA**
+- **SMP (Symmetric Multiprocessing)**:
+  - All CPUs share same memory bus.
+  - Scales poorly beyond ~8 CPUs.
+- **NUMA (Non-Uniform Memory Access)**:
+  - Groups CPUs into nodes with local memory.
+  - Remote memory access slower than local.
+  - SQLOS is NUMA-aware; tries to keep tasks and memory within same node.
+
+---
+
+## 3. **Query Life Cycle**
+1. **Parsing & Binding** – Syntax check, parse tree.
+2. **Plan Compilation** – Optimization, plan caching.
+3. **Query Execution** – Storage engine retrieves data.
+4. **Result Generation** – Results sent to client via TDS.
+
+---
+
+## 4. **Scheduling in SQL Server**
+- **Preemptive vs. Non-Preemptive**:
+  - Windows uses **preemptive scheduling** (priority-based).
+  - SQL Server uses **non-preemptive (cooperative) scheduling** via **SQLOS Scheduler (SOS)**.
+  - **Quantum** = 4 ms (max continuous CPU time before yielding).
+
+- **SQLOS Scheduler (SOS)**:
+  - One scheduler per CPU core.
+  - Maintains lists:
+    - **Worker List** – Available workers (threads/fibers).
+    - **Runnable List** – Workers ready to run (FIFO queue).
+    - **Waiter List** – Workers waiting for resources.
+    - **I/O List** – Outstanding I/O requests.
+    - **Timer List** – Time-based waits.
+
+- **Worker States**:
+  - **Running** – Executing on CPU.
+  - **Suspended** – Waiting for resource (in Waiter List).
+  - **Runnable** – Ready to run, waiting for CPU (in Runnable List).
+
+---
+
+## 5. **Monitoring Engine Behavior**
+- **Activity Monitor** – Built-in SSMS tool for real-time monitoring.
+- **Performance Monitor (PerfMon)** – Windows tool for performance counters.
+- **Dynamic Management Views (DMVs)** – Internal SQL Server state info.
+  - `sys.dm_exec_*` – Query execution.
+  - `sys.dm_os_*` – SQLOS operations.
+  - `sys.dm_tran_*` – Transactions.
+  - `sys.dm_io_*` – I/O activity.
+  - `sys.dm_db_*` – Database objects.
+
+---
+
+## 6. **Waits and Queues**
+- **Wait Types**:
+  - **Resource Waits** – Waiting for a resource (I/O, lock, latch).
+  - **Signal Waits** – Waiting for CPU time (Runnable state).
+
+- **Key DMVs for Waits**:
+  - `sys.dm_os_wait_stats` – Cumulative wait stats since server start.
+  - `sys.dm_os_waiting_tasks` – Currently waiting tasks.
+  - `sys.dm_exec_session_wait_stats` (SQL Server 2016+) – Waits per session.
+
+- **Formula**:
+  ```
+  Resource Wait Time = wait_time_ms - signal_wait_time_ms
+  ```
+
+---
+
+## 7. **Common Wait Types and Troubleshooting**
+| Wait Type | Indicates | Possible Causes | Solutions |
+|-----------|-----------|-----------------|-----------|
+| **LCK_M_*** | Waiting for a lock | Blocking, lock escalation | Optimize queries, review isolation levels, indexing |
+| **PAGELATCH_*** | Waiting for in-memory page latch | Hot pages, allocation contention | Partitioning, adjust tempdb files, review indexing |
+| **PAGEIOLATCH_*** | Waiting for page I/O | Slow disk, poor queries | Faster storage, optimize queries/indexes |
+| **CXPACKET** | Parallel query task synchronization | Uneven work distribution, outdated stats | Update stats, adjust MAXDOP, cost threshold |
+| **WRITELOG** | Waiting for log flush | Slow log disk, many small transactions | Faster log storage, batch transactions |
+| **SOS_SCHEDULER_YIELD** | Worker yielded CPU after quantum | CPU pressure | Optimize CPU-intensive queries |
+
+---
+
+## 8. **Best Practices**
+- **Establish a baseline** for wait statistics and compare over time.
+- **Monitor regularly** using DMVs and PerfMon.
+- **Understand wait types** before jumping to conclusions.
+- **Use Activity Monitor** for quick health checks.
+- **Keep statistics updated** to help query optimizer.
+- **Consider NUMA** when scaling to many CPUs.
+
+---
+
+## 9. **Useful Commands**
+```sql
+-- Clear wait stats
+DBCC SQLPERF('sys.dm_os_wait_stats', CLEAR);
+
+-- View wait stats
+SELECT * FROM sys.dm_os_wait_stats ORDER BY wait_time_ms DESC;
+
+-- View waiting tasks
+SELECT * FROM sys.dm_os_waiting_tasks WHERE session_id > 50;
+
+-- View schedulers
+SELECT * FROM sys.dm_os_schedulers WHERE status = 'VISIBLE ONLINE';
+
+-- View NUMA nodes
+SELECT * FROM sys.dm_os_nodes;
+```
+
+---
+
+## 10. **Key Takeaways**
+- SQL Server uses **non-preemptive scheduling** to control task execution.
+- **Waits are normal**, but excessive waits indicate bottlenecks.
+- Use **DMVs** to diagnose performance issues at a granular level.
+- **Wait statistics + PerfMon counters** = comprehensive performance picture.
+- Always **test changes** in a non-production environment first.
+
+-----------------
 
 
 quiz test:
