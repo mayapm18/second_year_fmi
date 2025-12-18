@@ -1,3 +1,5 @@
+
+
 quiz test:
 Which component of SQL Server is responsible for managing memory, threads, and scheduling of tasks?
 c
