@@ -122,4 +122,63 @@
 **Резултат:** Правилната комбинация от статистики + подходящ тип индекси = оптимална производителност на заявките.
 
 ----------
+Имена на статистики: start_WA
+За обемни данни е по-важно да се обновяват статистиките
+IAM - I am pages == heap
+Две структури на индекста: 
+- Clustered index - може да има много 
+- Nоnclustered - има само един
+SQL не е нужно да ползва същите данни и да ги въведе, за да спазва структурата. Индекса помага
+- Id колоната да е част от индекса и е добре да е във възходящ ред 
+- Ключа трябва да е уникален
+- 8kb за една sql страница
+----------
 quiz: 
+
+Which SQL Servers has cardinality estimation logic rewritten? 
+a.
+SQL 2016
+b.
+SQL 2014 
+
+Which internal page in SQL is responsible for heap tables? IAM
+
+Which are valid forms of Index Fragmentation? 
+a.
+External fragmentation
+d.
+Internal fragmentation
+
+What is a predicate selectivity?
+b.
+Number of rows in the table meeting the predicate
+
+Which vector measures uniqueness of data values for column/s covered by statistic object?
+c.
+Density
+
+Which of the following is valid tool/place to look for missing indexes? 
+a.
+Missing Indexes DMVsd.
+d.
+Query Store
+
+What high-selectivity for a predicate means?
+d.
+Small percentage of rows returned
+
+What is a filtered statistic?
+a.
+Statistic created with WHERE clause
+
+What does B-Tree in SQL Server stands for?
+c.
+Self-balancing tree data structure
+
+Up to how many steps can histogram contain?
+c.
+200
+
+Which structure does NOT belong to Columnstore index internal structure?
+b.
+Columngroup
