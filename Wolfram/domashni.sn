@@ -1,0 +1,55 @@
+(*Задача 1*)
+m = {{-2, 7, 3}, {0, -3, 5}, {5, 1, -4}};
+n = {{3, -2}, {1, 0}, {-4, 5}};
+Det[m]
+Inverse[m]
+r =m . n
+q = MatrixPower[m,4]
+CharacteristicPolynomial[m, л]
+Eigenvalues[m]
+Eigensystem[m]
+
+-------------------
+
+(*Задача 2*)
+w[t_] := 2 t^2 - Sin[3t - Pi/2] + 4
+w'[t]
+w''[t]
+N[w[E/2], 20]
+w[t_] := 2 t^2 - Sin[3 t - Pi/2] + 4;
+N[w'''[Sqrt[5]], 20]
+Series[w[t], {t, -1, 2}]
+Plot[w[t], {t, 0, Pi},
+ Epilog -> {Red, Point[{2, w[2]}]}
+]
+------------------
+
+(*Задача 3*)
+p[x_]=x^5-5x^4+x^3+39x^2-88x+60;
+q[x_]=x^3+4x^2;
+Factor[p[x]]
+PolynomialQuotient[p[x],q[x],x]
+PolynomialRemainder[p[x],q[x],x]
+Integrate[p[x]/q[x],x]
+NIntegrate[(p[x]-3*ArcCos[x])/(q[x] + Abs[4x-E]),{x,-1, 1}]
+g[x_,y_]=p[x+y]Log[x^2+1];
+NIntegrate[g[x,y],{x,-Pi,Pi},{y,-Sqrt[Pi^2-x^2],Sqrt[Pi^2-x^2]}]
+
+------------------
+(*Задача 4*)
+f[x_]=x^6-2x^3-x-1;
+
+N[NSolve[x^6-2x^3-x-1==0, x, Reals],13]
+
+NMinimize[{x^6-2x^3-x-1, -1 <= x <= 2}, x]
+
+а0=(1/(2*Pi)) * NIntegrate[f[x],{x,-Pi, Pi}]
+a[n_]:=(1/Pi) *NIntegrate[f[x]*Cos[n*x],{x,-Pi,Pi}]
+b[n_]:=(1/Pi) *NIntegrate[f[x]*Sin[n*x],{x,-Pi,Pi}]
+t[x_] := a0 + Sum[a[n] Cos[n*x] + b[n] Sin[n*x], {n, 1, 2}]
+
+Plot[{f[x],t[x]},{x, -Pi, Pi}]
+
+fp[x_] := f'[x](*допирателна*)
+tangent[x_] := f[1] +fp[1](x-1);
+Plot[{f[x],tangent[x]}, {x,-1,2}]
