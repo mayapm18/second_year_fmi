@@ -7,6 +7,8 @@
 
 [YouTube](https://www.youtube.com/watch?v=el_dbLPcXsI&list=PLi01XoE8jYohv6KlFfGXTZwjjZtg88VMz&index=6)
 
+[R compiler](https://www.tutorialspoint.com/compilers/online-r-compiler.htm)
+
 Учебен план:
 
 10 weeks Wolfram
