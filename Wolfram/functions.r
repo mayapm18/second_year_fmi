@@ -251,3 +251,279 @@ cat("\nТаблицата е записана във файл 'grades_table.csv'
 read_table <- read.csv("grades_table.csv", row.names = 1)
 cat("\nПрочетена таблица от файл:\n")
 print(read_table)
+
+
+# ОПИСАТЕЛНА СТАТИСТИКА В R
+# =========================
+
+# 1. mean(x) - средна стойност на x
+x <- c(10, 20, 30, 40, 50)
+mean(x)      # 30
+
+# 2. var(x) - дисперсия на x
+var(x)       # 250
+
+# 3. sd(x) - стандартното отклонение на x
+sd(x)        # 15.81139
+
+# 4. quantile(x) - пресмята квартилите на x
+quantile(x)  # 0%  25%  50%  75% 100% 
+             # 10   20   30   40   50
+
+# 5. quantile(x, α) - пресмята α квантил на x
+quantile(x, 0.9)  # 90-ти квантил: 46
+
+# 6. summary(x) - пресмята средната стойност и квартилите на x
+summary(x)   # Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+             # 10.0    20.0    30.0    30.0    40.0    50.0
+
+# 7. density(x) - връща плътността на x
+set.seed(123)
+normal_data <- rnorm(100, mean = 50, sd = 10)
+density(normal_data)  # Обект с плътност
+
+# 8. boxplot(x) - построява боксплот по данните x
+boxplot(normal_data)
+
+# 9. hist(x) - построява хистограма по данните x
+hist(normal_data)
+
+# 10. plot() - чертае графика
+plot(1:10, 1:10, type = "l")
+
+# 11. lines() - добавя линия/крива към вече начертана графика
+lines(1:10, sin(1:10))
+
+# 12. split.screen() - разделя полето за чертаене на части
+split.screen(c(2, 2))
+
+# 13. screen() - избира част, в която да се чертае
+screen(1)
+plot(1:10, 1:10)
+
+# 14. close.screen(all.screens = TRUE) - затваря всички разделения
+close.screen(all.screens = TRUE)
+
+# ПРИМЕРИ С ПЪЛНИ КОДОВЕ
+# ======================
+
+# Пример 1: Пълна статистическа анализа
+data <- c(23, 45, 67, 89, 34, 56, 78, 12, 90, 43)
+
+# Основни статистики
+cat("Средна стойност:", mean(data), "\n")
+cat("Медиана:", median(data), "\n")
+cat("Дисперсия:", var(data), "\n")
+cat("Стандартно отклонение:", sd(data), "\n")
+cat("Минимум:", min(data), "\n")
+cat("Максимум:", max(data), "\n")
+
+# Квартили
+cat("\nКвартили:\n")
+print(quantile(data))
+
+# Обобщена статистика
+cat("\nОбобщение:\n")
+print(summary(data))
+
+# Пример 2: Графики
+par(mfrow = c(2, 2))  # 2x2 мрежа от графики
+
+# Хистограма
+hist(data, 
+     main = "Хистограма",
+     col = "lightblue",
+     xlab = "Стойности")
+
+# Боксплот
+boxplot(data,
+        main = "Боксплот",
+        col = "lightgreen",
+        ylab = "Стойности")
+
+# Графика с плътност
+plot(density(data),
+     main = "Плътност",
+     col = "red",
+     lwd = 2)
+
+# Q-Q графика
+qqnorm(data,
+       main = "Q-Q графика")
+qqline(data, col = "blue")
+
+par(mfrow = c(1, 1))  # Връщане към нормален режим
+
+# Пример 3: Линейни графики
+x <- seq(0, 10, 0.1)
+y <- sin(x)
+
+# Основна графика
+plot(x, y,
+     type = "l",
+     main = "Синусова функция",
+     xlab = "x",
+     ylab = "sin(x)",
+     col = "blue",
+     lwd = 2)
+
+# Добавяне на косинус
+lines(x, cos(x), 
+      col = "red", 
+      lwd = 2, 
+      lty = 2)
+
+# Добавяне на легенда
+legend("topright",
+       legend = c("sin(x)", "cos(x)"),
+       col = c("blue", "red"),
+       lwd = c(2, 2),
+       lty = c(1, 2))
+
+# Пример 4: Разделяне на екрана
+# Разделяне на 3 части
+split.screen(c(1, 3))
+
+screen(1)
+plot(1:5, 1:5, main = "Графика 1")
+
+screen(2)
+plot(5:1, 1:5, main = "Графика 2")
+
+screen(3)
+plot(1:5, 5:1, main = "Графика 3")
+
+close.screen(all.screens = TRUE)
+
+# Пример 5: Практически анализ
+# Генериране на нормално разпределени данни
+set.seed(42)
+sample_data <- rnorm(200, mean = 100, sd = 15)
+
+# Преглед на разпределението
+hist(sample_data,
+     breaks = 20,
+     main = "Разпределение на височини",
+     xlab = "Височина (см)",
+     col = "lightblue",
+     border = "white",
+     prob = TRUE)  # Показва плътност
+
+# Добавяне на крива на плътността
+lines(density(sample_data), 
+      col = "red", 
+      lwd = 2)
+
+# Добавяне на нормално разпределение
+curve(dnorm(x, mean = mean(sample_data), sd = sd(sample_data)),
+      add = TRUE,
+      col = "blue",
+      lwd = 2,
+      lty = 2)
+
+# Добавяне на вертикални линии за средна стойност и стандартни отклонения
+abline(v = mean(sample_data), col = "green", lwd = 2)
+abline(v = mean(sample_data) + sd(sample_data), col = "orange", lwd = 1, lty = 2)
+abline(v = mean(sample_data) - sd(sample_data), col = "orange", lwd = 1, lty = 2)
+
+# Легенда
+legend("topright",
+       legend = c("Данни", "Емпирична плътност", "Теоретична нормална", "Средна", "±1 SD"),
+       col = c("lightblue", "red", "blue", "green", "orange"),
+       lwd = c(NA, 2, 2, 2, 1),
+       lty = c(NA, 1, 2, 1, 2),
+       fill = c("lightblue", NA, NA, NA, NA),
+       border = c("white", NA, NA, NA, NA))
+
+# Пример 6: Изчисляване на различни квантили
+data_vector <- c(10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
+
+cat("\nРазлични квантили:\n")
+cat("25-ти перцентил:", quantile(data_vector, 0.25), "\n")
+cat("Медиана (50-ти перцентил):", quantile(data_vector, 0.5), "\n")
+cat("75-ти перцентил:", quantile(data_vector, 0.75), "\n")
+cat("90-ти перцентил:", quantile(data_vector, 0.9), "\n")
+cat("95-ти перцентил:", quantile(data_vector, 0.95), "\n")
+cat("99-ти перцентил:", quantile(data_vector, 0.99), "\n")
+
+# Пример 7: Сравнение на две популации
+group1 <- rnorm(50, mean = 100, sd = 10)
+group2 <- rnorm(50, mean = 110, sd = 12)
+
+# Боксплот за сравнение
+boxplot(list("Група 1" = group1, "Група 2" = group2),
+        main = "Сравнение на две групи",
+        ylab = "Стойности",
+        col = c("lightblue", "lightgreen"),
+        border = c("blue", "green"))
+
+# Статистики за сравнение
+cat("\nСтатистики за Група 1:\n")
+print(summary(group1))
+cat("\nСтатистики за Група 2:\n")
+print(summary(group2))
+
+# Пример 8: Използване на split.screen за сложни графики
+split.screen(c(2, 2))
+
+screen(1)
+hist(group1, main = "Група 1", col = "lightblue")
+
+screen(2)
+hist(group2, main = "Група 2", col = "lightgreen")
+
+screen(3)
+boxplot(list(group1, group2), 
+        names = c("Група 1", "Група 2"),
+        col = c("lightblue", "lightgreen"))
+
+screen(4)
+plot(density(group1), 
+     main = "Плътност", 
+     col = "blue", 
+     lwd = 2,
+     xlim = range(c(group1, group2)))
+lines(density(group2), 
+      col = "green", 
+      lwd = 2)
+legend("topright", 
+       legend = c("Група 1", "Група 2"), 
+       col = c("blue", "green"), 
+       lwd = 2)
+
+close.screen(all.screens = TRUE)
+
+# Пример 9: Проста времева серия
+time <- 1:100
+values <- cumsum(rnorm(100))  # случаен разход
+
+plot(time, values,
+     type = "l",
+     main = "Времева серия",
+     xlab = "Време",
+     ylab = "Стойност",
+     col = "darkblue",
+     lwd = 2)
+
+# Добавяне на плъзгаща се средна
+library(zoo)
+moving_avg <- rollmean(values, 10, fill = NA)
+lines(time, moving_avg, 
+      col = "red", 
+      lwd = 2, 
+      lty = 2)
+
+# Добавяне на линия на тренда
+trend <- lm(values ~ time)
+abline(trend, 
+       col = "green", 
+       lwd = 2)
+
+legend("topleft",
+       legend = c("Данни", "Плъзгаща се средна (10)", "Линеен тренд"),
+       col = c("darkblue", "red", "green"),
+       lwd = c(2, 2, 2),
+       lty = c(1, 2, 1))
+
+# Край на демонстрацията
+cat("\nДемонстрацията на статистическите функции и графики е завършена!\n")
