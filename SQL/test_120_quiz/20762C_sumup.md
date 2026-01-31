@@ -1,5 +1,3 @@
-Based on the extensive training content you've provided, here are the **most important concepts** for an exam/quiz on **SQL Server Database Development** (likely related to a Microsoft certification like 70-762 or similar):
-
 ## **Core Exam Topics:**
 
 ### **1. SQL Server Platform & Architecture**
