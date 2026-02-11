@@ -1,4 +1,1970 @@
 \documentclass[10pt]{article}
+\usepackage[bulgarian]{babel}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage[margin=1.5cm]{geometry}
+
+
+\title{Математически Анализ}
+\author{Прасета}
+\date{\small (-)стари въпроси 10години+. Големите числа са за колко пъти се е срещало(около 90 въпроса са, you got this!)}
+
+
+\begin{document}
+
+\maketitle
+
+\section*{13}
+
+\textbf{Задача 1(1,2) }Нека $\Delta$ е паралелотоп в $\mathbb{R}^n$ и $f$ е ограничена реалнозначна функция, дефинирана в него. Дефинирайте интеграл на Риман за $f$ чрез подхода на Дарбу (без никакви доказателства).
+
+\textbf{Решение. }Нека $\Pi = \{\Delta_i\}_{i=1}^{i_0}$ е произволно подразделяне на $\Delta$.  
+За всяко $i = 1,2,\dots,i_0$ полагаме
+\[
+m_i = \inf\{f(x) \mid x \in \Delta_i\}, \qquad 
+M_i = \sup\{f(x) \mid x \in \Delta_i\}.
+\]
+
+\vspace{0.2cm}
+\noindent
+\textit{Малка (долна) сума на Дарбу} на $f$ относно $\Pi$ се нарича
+\[
+s_f(\Pi) = \sum_{i=1}^{i_0} m_i \, \mu(\Delta_i),
+\]
+а \textit{голяма (горна) сума на Дарбу} на $f$ относно $\Pi$ се нарича
+\[
+S_f(\Pi) = \sum_{i=1}^{i_0} M_i \, \mu(\Delta_i),
+\]
+където $\mu(\Delta_i)$ е $n$-мерната мярка на $\Delta_i$.
+
+\vspace{0.2cm}
+\noindent
+\textit{Долен интеграл на Риман} на $f$ в $\Delta$ се дефинира като
+\[
+\underline{\int_{\Delta}} f = \sup\{ s_f(\Pi) \mid \Pi \text{ е подразделяне на } \Delta \},
+\]
+а \textit{горен интеграл на Риман} на $f$ в $\Delta$ — като
+\[
+\overline{\int_{\Delta}} f = \inf\{ S_f(\Pi) \mid \Pi \text{ е подразделяне на } \Delta \}.
+\]
+
+\vspace{0.2cm}
+\noindent
+Функцията $f$ се нарича \textit{интегруема по Риман} в $\Delta$, ако
+\[
+\underline{\int_{\Delta}} f = \overline{\int_{\Delta}} f.
+\]
+В този случай общата стойност на горния и долния интеграл се нарича \textit{Риманов интеграл} на $f$ в $\Delta$ и се означава с
+\[
+\int_{\Delta} f(x)\,dx \quad \text{или} \quad \int_{\Delta} f.
+\]
+
+
+\section*{12}
+
+\textbf{Задача 1(2,3) }Дайте дефиниция на множество, пренебрежимо по Лебег. 
+
+\textbf{Решение. }Едно подмножество $A \subset \mathbb{R}^n$ се нарича \textit{пренебрежимо по Лебег} (или с мярка нула), ако за всяко $\varepsilon > 0$ съществува най-много изброимо множество от паралелотопи $\{\Delta_k\}_{k=1}^\infty$ (затворени или отворени) такива, че
+\[
+A \subset \bigcup_{k=1}^\infty \Delta_k \quad \text{и} \quad \sum_{k=1}^\infty \mu(\Delta_k) < \varepsilon,
+\]
+където $\mu(\Delta_k)$ е $n$-мерната мярка на $\Delta_k$. С други думи, множеството $A$ може да се покрие с изброимо много паралелотопи, чиято сумарна мярка е произволно малка.
+
+\textbf{Задача 2(K варира всяка година – текстът е идентичен, освен дефиницията на K)} Представете $\iint_K f(x,y)\,dxdy$ като повторен по два начина: с външно интегриране по $x$ и с външно интегриране по $y$.
+
+\textbf{Решение. }
+
+\vspace{0.1cm}
+\noindent
+\textbf{1. Външно интегриране по $x$.}  
+Ако $K$ е криволинеен трапец спрямо $x$, т.е.
+\[
+K = \{(x,y) \in \mathbb{R}^2 \mid a \le x \le b,\; \varphi_1(x) \le y \le \varphi_2(x)\},
+\]
+където $\varphi_1,\varphi_2 : [a,b] \to \mathbb{R}$ са непрекъснати функции и $\varphi_1(x) \le \varphi_2(x)$ за всяко $x \in [a,b]$, то
+\[
+\iint_K f(x,y)\,dx\,dy = \int_a^b \left( \int_{\varphi_1(x)}^{\varphi_2(x)} f(x,y)\,dy \right) dx.
+\]
+
+\vspace{0.1cm}
+\noindent
+\textbf{2. Външно интегриране по $y$.}  
+Ако $K$ е криволинеен трапец спрямо $y$, т.е.
+\[
+K = \{(x,y) \in \mathbb{R}^2 \mid c \le y \le d,\; \psi_1(y) \le x \le \psi_2(y)\},
+\]
+където $\psi_1,\psi_2 : [c,d] \to \mathbb{R}$ са непрекъснати функции и $\psi_1(y) \le \psi_2(y)$ за всяко $y \in [c,d]$, то
+\[
+\iint_K f(x,y)\,dx\,dy = \int_c^d \left( \int_{\psi_1(y)}^{\psi_2(y)} f(x,y)\,dx \right) dy.
+\]
+\noindent
+Ако множеството $K$ не е криволинеен трапец от двата вида едновременно, то се налага да се раздели на части, за които горните представяния са възможни.
+
+\section*{10}
+
+\textbf{Задача 1(3,2) }Докажете, че изброимо обединение на пренебрежими множества е пренебрежимо.
+
+\textbf{Доказателство.} 
+Нека $\{A_m\}_{m=1}^{\infty}$ е редица от множества, всяко от които е пренебрежимо по Лебег в $\mathbb{R}^n$.  
+Да положим
+\[
+A = \bigcup_{m=1}^{\infty} A_m.
+\]
+Нека $\varepsilon > 0$ е произволно.
+
+Тъй като $A_1$ е пренебрежимо, съществуват изброимо много паралелотопи $\{\Delta_k^1\}_{k=1}^{\infty}$ такива, че
+\[
+A_1 \subset \bigcup_{k=1}^{\infty} \Delta_k^1 \quad \text{и} \quad \sum_{k=1}^{\infty} \mu(\Delta_k^1) < \frac{\varepsilon}{2}.
+\]
+
+Тъй като $A_2$ е пренебрежимо, съществуват изброимо много паралелотопи $\{\Delta_k^2\}_{k=1}^{\infty}$ такива, че
+\[
+A_2 \subset \bigcup_{k=1}^{\infty} \Delta_k^2 \quad \text{и} \quad \sum_{k=1}^{\infty} \mu(\Delta_k^2) < \frac{\varepsilon}{2^2}.
+\]
+
+Продължаваме аналогично. За всяко $m \in \mathbb{N}$ от пренебрежимостта на $A_m$ съществуват изброимо много паралелотопи $\{\Delta_k^m\}_{k=1}^{\infty}$ със свойствата
+\[
+A_m \subset \bigcup_{k=1}^{\infty} \Delta_k^m \quad \text{и} \quad \sum_{k=1}^{\infty} \mu(\Delta_k^m) < \frac{\varepsilon}{2^m}.
+\]
+
+Сега разглеждаме семейството от всички паралелотопи $\{\Delta_k^m \mid m,k \in \mathbb{N}\}$.  
+То е изброимо като изброимо обединение на изброими множества. Очевидно
+\[
+A = \bigcup_{m=1}^{\infty} A_m \subset \bigcup_{m=1}^{\infty} \bigcup_{k=1}^{\infty} \Delta_k^m.
+\]
+
+Оценяваме сумарната мярка:
+\[
+\sum_{m=1}^{\infty} \sum_{k=1}^{\infty} \mu(\Delta_k^m) < \sum_{m=1}^{\infty} \frac{\varepsilon}{2^m} = \varepsilon.
+\]
+
+Тъй като $\varepsilon > 0$ беше произволно, множеството $A$ е пренебрежимо по Лебег. $\blacksquare$
+
+\textbf{Задача 2(1,2) }Докажете, че $f$ е интегруема точно тогава, когато за всеки две положителни числа $\varepsilon$ и $\eta$ съществува подразделяне $\Pi = \{\Delta_i\}_{i=1}^{i_0}$ на $\Delta$ такова, че $\displaystyle \sum_{M_i - m_i \ge \eta} \mu(\Delta_i) < \varepsilon$, където $M_i = \sup\{f(x): x\in\Delta_i\}$, $m_i = \inf\{f(x): x\in\Delta_i\}$.
+
+\textbf{Доказателство.}
+\textit{Необходимост.} Нека $f$ е интегруема в $\Delta$ и $\varepsilon, \eta > 0$ са произволни.  
+От първата форма на критерия за интегруемост (Твърдение 2.9) съществува подразделяне $\Pi = \{\Delta_i\}_{i=1}^{i_0}$ на $\Delta$ такова, че
+\[
+S_f(\Pi) - s_f(\Pi) < \varepsilon \eta.
+\]
+
+Тогава
+\[
+\varepsilon \eta > S_f(\Pi) - s_f(\Pi) = \sum_{i=1}^{i_0} (M_i - m_i) \mu(\Delta_i) 
+\ge \sum_{M_i - m_i \ge \eta} (M_i - m_i) \mu(\Delta_i) 
+\ge \eta \sum_{M_i - m_i \ge \eta} \mu(\Delta_i).
+\]
+
+Следователно
+\[
+\sum_{M_i - m_i \ge \eta} \mu(\Delta_i) < \varepsilon.
+\]
+
+\noindent
+\textit{Достатъчност.} Нека за всеки $\varepsilon, \eta > 0$ съществува подразделяне $\Pi$ на $\Delta$ с
+\[
+\sum_{M_i - m_i \ge \eta} \mu(\Delta_i) < \varepsilon.
+\]
+
+Означаваме $M = \sup_{x \in \Delta} f(x)$, $m = \inf_{x \in \Delta} f(x)$.  
+Нека $\zeta > 0$ е произволно. Избираме
+\[
+\varepsilon = \frac{\zeta}{2(M - m)}, \qquad 
+\eta = \frac{\zeta}{2\,\mu(\Delta)}.
+\]
+
+За съответното подразделяне $\Pi = \{\Delta_i\}_{i=1}^{i_0}$ имаме
+\[
+\begin{aligned}
+S_f(\Pi) - s_f(\Pi) 
+&= \sum_{M_i - m_i < \eta} (M_i - m_i) \mu(\Delta_i) + \sum_{M_i - m_i \ge \eta} (M_i - m_i) \mu(\Delta_i) \\
+&\le \eta \sum_{M_i - m_i < \eta} \mu(\Delta_i) + (M - m) \sum_{M_i - m_i \ge \eta} \mu(\Delta_i) \\
+&\le \eta \, \mu(\Delta) + (M - m) \varepsilon \\
+&< \frac{\zeta}{2} + \frac{\zeta}{2} = \zeta.
+\end{aligned}
+\]
+Тъй като $\zeta > 0$ е произволно, от първата форма на критерия следва, че $f$ е интегруема в $\Delta$. $\blacksquare$
+
+\section*{9}
+
+\textbf{Задача 1(4,5,6) }Дайте дефиниция на това какво значи едно поле да е потенциално.
+
+\textbf{Решение. }Нека $\Omega \subset \mathbb{R}^n$ е област и $\mathbf{F} : \Omega \to \mathbb{R}^n$ е векторно поле в $\Omega$. 
+Казваме, че полето $\mathbf{F}$ е \textit{потенциално}, ако съществува диференцируема функция 
+$u : \Omega \to \mathbb{R}$ такава, че
+\[
+\mathbf{F}(x) = \operatorname{grad} u(x) = \left( \frac{\partial u}{\partial x_1}(x), \frac{\partial u}{\partial x_2}(x), \dots, \frac{\partial u}{\partial x_n}(x) \right)
+\]
+за всяко $x \in \Omega$.
+
+\vspace{0.2cm}
+\noindent
+Функцията $u$ се нарича \textit{потенциал} на векторното поле $\mathbf{F}$.
+
+\vspace{0.2cm}
+\noindent
+Ако полето е потенциално, казваме още, че то е \textit{градиентно} или \textit{консервативно}.
+
+\section*{8}
+
+\textbf{Задача 1(1) }Нека $f : D \to \mathbb{R}^m$ е изображение с дефиниционна област $D \subset \mathbb{R}^n$. Дайте дефиниция на "множество, релативно отворено в $D$". Докажете, че $f$ е непрекъсната в $D$ точно тогава, когато първообразът $f^{-1}(U) = \{x\in D: f(x)\in U\}$ на всяко отворено подмножество $U$ на $\mathbb{R}^m$ е релативно отворено в $D$.
+
+\textbf{Дефиниция. }Нека $D \subset \mathbb{R}^n$. Едно подмножество $V \subset D$ се нарича \textit{релативно отворено в $D$}, 
+ако съществува отворено множество $U \subset \mathbb{R}^n$ такова, че
+\[
+V = D \cap U.
+\]
+С други думи, $V$ е отворено в относителната топология на $D$, наследена от $\mathbb{R}^n$.
+
+
+\textbf{Доказателство.}
+\textit{Необходимост.} Нека $f$ е непрекъсната в $D$ и $U \subset \mathbb{R}^m$ е отворено.  
+Нека $x \in f^{-1}(U)$. Тогава $f(x) \in U$, а $U$ е отворено, следователно съществува $\varepsilon > 0$ такова, че
+$B_\varepsilon(f(x)) \subset U$.  
+От непрекъснатостта на $f$ в $x$ следва, че съществува $\delta > 0$ с 
+$f(B_\delta(x) \cap D) \subset B_\varepsilon(f(x)) \subset U$.  
+Следователно $B_\delta(x) \cap D \subset f^{-1}(U)$.  
+Тогава $f^{-1}(U) = D \cap \bigcup_{x \in f^{-1}(U)} B_{\delta_x}(x)$ е релативно отворено в $D$.
+
+\textit{Достатъчност.} Нека за всяко отворено $U \subset \mathbb{R}^m$ множеството $f^{-1}(U)$ е релативно отворено в $D$.  
+Фиксираме $x \in D$ и $\varepsilon > 0$. Множеството $B_\varepsilon(f(x))$ е отворено в $\mathbb{R}^m$, следователно 
+$f^{-1}(B_\varepsilon(f(x)))$ е релативно отворено в $D$ и съдържа $x$.  
+Тогава съществува $\delta > 0$ такова, че $B_\delta(x) \cap D \subset f^{-1}(B_\varepsilon(f(x)))$.  
+Следователно $f(B_\delta(x) \cap D) \subset B_\varepsilon(f(x))$, което означава, че $f$ е непрекъсната в $x$.  
+Тъй като $x$ е произволно, $f$ е непрекъсната в $D$. $\blacksquare$
+
+\section*{7}
+
+\textbf{Задача 1(1) }Нека $A$ е произволно подмножество на $\mathbb{R}^n$. Дайте дефиниция на $\partial A$ (контура на $A$). Докажете, че $\partial A$ е затворено множество.
+
+\textbf{Дефиниция} 
+Контур (граница) на множеството $A \subset \mathbb{R}^n$ се нарича множеството
+\[
+\partial A := \{\, x \in \mathbb{R}^n \mid \forall U \text{ отворено}, \, x \in U \;\Longrightarrow\; 
+U \cap A \neq \varnothing \ \text{и} \ U \setminus A \neq \varnothing \,\}.
+\]
+
+С други думи, точка $x$ принадлежи на $\partial A$ тогава и само тогава, когато всяка нейна отворена околност съдържа както точки от $A$, така и точки от допълнението $\mathbb{R}^n \setminus A$.
+
+
+\textbf{Доказателство.} 
+Затворено множество е това, чието допълнение е отворено.  
+Ще докажем, че $\mathbb{R}^n \setminus \partial A$ е отворено.
+
+Нека $x \in \mathbb{R}^n \setminus \partial A$. Тогава $x$ не удовлетворява дефиницията за контур.  
+Следователно съществува отворено множество $U$, $x \in U$, такова че
+\[
+U \cap A = \varnothing \quad \text{или} \quad U \setminus A = \varnothing.
+\]
+
+Тъй като $U$ е отворено и $x \in U$, съществува $\varepsilon > 0$ с $B_\varepsilon(x) \subset U$.
+
+\textit{Случай 1.} $U \cap A = \varnothing$.  
+Тогава $B_\varepsilon(x) \cap A = \varnothing$.  
+Всяко $y \in B_\varepsilon(x)$ има околност $B_\varepsilon(x)$, която не съдържа точки от $A$, следователно $y \notin \partial A$.  
+Оттук $B_\varepsilon(x) \subset \mathbb{R}^n \setminus \partial A$.
+
+\textit{Случай 2.} $U \setminus A = \varnothing$, т.е. $U \subset A$.  
+Тогава $B_\varepsilon(x) \subset A$ и $B_\varepsilon(x) \cap (\mathbb{R}^n \setminus A) = \varnothing$.  
+Всяко $y \in B_\varepsilon(x)$ има околност $B_\varepsilon(x)$, която не съдържа точки от $\mathbb{R}^n \setminus A$, следователно $y \notin \partial A$.  
+Отново $B_\varepsilon(x) \subset \mathbb{R}^n \setminus \partial A$.
+
+И в двата случая получихме $B_\varepsilon(x) \subset \mathbb{R}^n \setminus \partial A$.  
+Следователно $x$ е вътрешна точка на $\mathbb{R}^n \setminus \partial A$.  
+Тъй като $x$ беше произволно, $\mathbb{R}^n \setminus \partial A$ е отворено множество.
+
+Отвореното допълнение означава, че $\partial A$ е затворено. $\blacksquare$
+
+\textbf{Задача 2(7,8) }Нека $\Omega$ е област в $\mathbb{R}^2$ с частично гладка граница $\partial\Omega$ и нека $F = (F_1, F_2)$ е гладко векторно поле, дефинирано в околност на $\overline{\Omega} = \Omega \cup \partial\Omega$. Докажете формулата на Грийн за $F$ и $\Omega$, ако $\Omega$ е криволинеен трапец и по двете променливи. 
+
+\textbf{Теорема (Формула на Грийн).} 
+При горните условия е в сила
+\[
+\int_{\partial\Omega} F_1\,dx + F_2\,dy = \iint_{\Omega} \left( \frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y} \right) dx\,dy,
+\]
+където $\partial\Omega$ е ориентирана положително (обратно на часовниковата стрелка).
+
+\textbf{Доказателство.} 
+Разделяме полето $F$ на две полета: $\tilde{F}^1 = (F_1,0)$ и $\tilde{F}^2 = (0,F_2)$. Ще докажем, че
+\[
+\int_{\partial\Omega} F_1\,dx = \iint_{\Omega} \left( -\frac{\partial F_1}{\partial y} \right) dx\,dy, \qquad
+\int_{\partial\Omega} F_2\,dy = \iint_{\Omega} \frac{\partial F_2}{\partial x} \, dx\,dy.
+\]
+
+\textit{1. Интеграл на $F_1\,dx$.} 
+Тъй като $\Omega$ е криволинеен трапец по $x$, съществуват числа $a < b$ и частично гладки функции $\varphi_1, \varphi_2 : [a,b] \to \mathbb{R}$ с $\varphi_1(x) \le \varphi_2(x)$ за всяко $x \in [a,b]$, такива че
+\[
+\overline{\Omega} = \{ (x,y) \in \mathbb{R}^2 \mid a \le x \le b,\ \varphi_1(x) \le y \le \varphi_2(x) \}.
+\]
+
+Тогава
+\[
+\iint_{\Omega} \left( -\frac{\partial F_1}{\partial y} \right) dx\,dy 
+= -\int_a^b \left( \int_{\varphi_1(x)}^{\varphi_2(x)} \frac{\partial F_1}{\partial y}(x,y)\,dy \right) dx
+= -\int_a^b \bigl( F_1(x,\varphi_2(x)) - F_1(x,\varphi_1(x)) \bigr) dx.
+\]
+
+Границата $\partial\Omega$, ориентирана положително, се състои от четири части:
+\begin{align*}
+\gamma_1 &: y = \varphi_1(x),\; x \text{ от } a \text{ до } b, \\
+\gamma_2 &: x = b,\; y \text{ от } \varphi_1(b) \text{ до } \varphi_2(b), \\
+\gamma_3 &: y = \varphi_2(x),\; x \text{ от } b \text{ до } a, \\
+\gamma_4 &: x = a,\; y \text{ от } \varphi_2(a) \text{ до } \varphi_1(a).
+\end{align*}
+
+Следователно
+\[
+\int_{\partial\Omega} F_1\,dx = \int_{\gamma_1} F_1\,dx + \int_{\gamma_2} F_1\,dx + \int_{\gamma_3} F_1\,dx + \int_{\gamma_4} F_1\,dx.
+\]
+
+По $\gamma_2$ и $\gamma_4$ имаме $dx = 0$, така че интегралите са нула. 
+По $\gamma_1$ параметризираме с $x$ и получаваме $\int_a^b F_1(x,\varphi_1(x))\,dx$, 
+а по $\gamma_3$ параметризираме с $x$ от $b$ до $a$ и получаваме $\int_b^a F_1(x,\varphi_2(x))\,dx = -\int_a^b F_1(x,\varphi_2(x))\,dx$. 
+Следователно
+\[
+\int_{\partial\Omega} F_1\,dx = \int_a^b F_1(x,\varphi_1(x))\,dx - \int_a^b F_1(x,\varphi_2(x))\,dx = -\int_a^b \bigl( F_1(x,\varphi_2(x)) - F_1(x,\varphi_1(x)) \bigr) dx,
+\]
+което е точно горният израз.
+
+\textit{2. Интеграл на $F_2\,dy$.} 
+Тъй като $\Omega$ е криволинеен трапец и по $y$, съществуват числа $c < d$ и частично гладки функции $\psi_1, \psi_2 : [c,d] \to \mathbb{R}$ с $\psi_1(y) \le \psi_2(y)$ за всяко $y \in [c,d]$, такива че
+\[
+\overline{\Omega} = \{ (x,y) \in \mathbb{R}^2 \mid c \le y \le d,\ \psi_1(y) \le x \le \psi_2(y) \}.
+\]
+
+Тогава
+\[
+\iint_{\Omega} \frac{\partial F_2}{\partial x} \, dx\,dy = \int_c^d \left( \int_{\psi_1(y)}^{\psi_2(y)} \frac{\partial F_2}{\partial x}(x,y)\,dx \right) dy = \int_c^d \bigl( F_2(\psi_2(y),y) - F_2(\psi_1(y),y) \bigr) dy.
+\]
+
+Границата $\partial\Omega$, ориентирана положително, се състои от четири части:
+\begin{align*}
+\tilde\gamma_1 &: x = \psi_1(y),\; y \text{ от } c \text{ до } d, \\
+\tilde\gamma_2 &: y = d,\; x \text{ от } \psi_1(d) \text{ до } \psi_2(d), \\
+\tilde\gamma_3 &: x = \psi_2(y),\; y \text{ от } d \text{ до } c, \\
+\tilde\gamma_4 &: y = c,\; x \text{ от } \psi_2(c) \text{ до } \psi_1(c).
+\end{align*}
+
+По $\tilde\gamma_2$ и $\tilde\gamma_4$ имаме $dy = 0$, така че интегралите са нула. 
+По $\tilde\gamma_1$ параметризираме с $y$ и получаваме $\int_c^d F_2(\psi_1(y),y)\,dy$, 
+а по $\tilde\gamma_3$ параметризираме с $y$ от $d$ до $c$ и получаваме $\int_d^c F_2(\psi_2(y),y)\,dy = -\int_c^d F_2(\psi_2(y),y)\,dy$. 
+Следователно
+\[
+\int_{\partial\Omega} F_2\,dy = \int_c^d F_2(\psi_1(y),y)\,dy - \int_c^d F_2(\psi_2(y),y)\,dy = -\int_c^d \bigl( F_2(\psi_2(y),y) - F_2(\psi_1(y),y) \bigr) dy,
+\]
+което е точно горният израз.
+
+\textit{3. Заключение.} 
+Събирайки двете равенства, получаваме
+\[
+\int_{\partial\Omega} F_1\,dx + F_2\,dy = \iint_{\Omega} \left( -\frac{\partial F_1}{\partial y} + \frac{\partial F_2}{\partial x} \right) dx\,dy = \iint_{\Omega} \left( \frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y} \right) dx\,dy.
+\]
+
+Така формулата на Грийн е доказана за област $\Omega$, която е криволинеен трапец и по двете променливи. $\blacksquare$
+
+
+\section*{6}
+
+\textbf{Задача 1(8) }Формулирайте теоремата на Гаус-Остроградски. Докажете я за област, която е цилиндрично тяло по всяка от трите променливи.
+
+
+\textbf{Теорема (Гаус-Остроградски).} 
+Нека $\Omega \subset \mathbb{R}^3$ е ограничена област, чиято граница $\partial\Omega$ е частично гладка повърхнина, ориентирана с външната (за $\Omega$) единична нормала $n$. Нека $F = (F_1, F_2, F_3)$ е гладко векторно поле, дефинирано в отворено множество, съдържащо $\overline{\Omega} = \Omega \cup \partial\Omega$. Тогава
+\[
+\iint_{\partial\Omega} \langle F, n \rangle \,ds = \iiint_{\Omega} \operatorname{div} F \,dx\,dy\,dz,
+\]
+където $\operatorname{div} F = \dfrac{\partial F_1}{\partial x} + \dfrac{\partial F_2}{\partial y} + \dfrac{\partial F_3}{\partial z}$.
+
+\textbf{Доказателство (за област, която е цилиндрично тяло по трите променливи).}
+
+Ще докажем теоремата в случая, когато $\Omega$ е цилиндрично тяло и по трите координатни оси. Това означава, че $\Omega$ може да се представи във всеки от следните три вида:
+
+\begin{align*}
+\Omega &= \{(x,y,z) \mid (x,y) \in D_{xy},\; g_1(x,y) \le z \le g_2(x,y)\}, \\
+\Omega &= \{(x,y,z) \mid (x,z) \in D_{xz},\; h_1(x,z) \le y \le h_2(x,z)\}, \\
+\Omega &= \{(x,y,z) \mid (y,z) \in D_{yz},\; k_1(y,z) \le x \le k_2(y,z)\},
+\end{align*}
+
+където $D_{xy}, D_{xz}, D_{yz}$ са измерими компакти в съответните координатни равнини, а функциите $g_i, h_i, k_i$ са частично гладки.
+
+Разделяме полето $F$ на три полета: $\tilde{F}^1 = (F_1,0,0)$, $\tilde{F}^2 = (0,F_2,0)$ и $\tilde{F}^3 = (0,0,F_3)$. Ще докажем, че
+\[
+\iint_{\partial\Omega} \langle \tilde{F}^1, n \rangle \,ds = \iiint_{\Omega} \frac{\partial F_1}{\partial x} \,dx\,dy\,dz,
+\]
+\[
+\iint_{\partial\Omega} \langle \tilde{F}^2, n \rangle \,ds = \iiint_{\Omega} \frac{\partial F_2}{\partial y} \,dx\,dy\,dz,
+\]
+\[
+\iint_{\partial\Omega} \langle \tilde{F}^3, n \rangle \,ds = \iiint_{\Omega} \frac{\partial F_3}{\partial z} \,dx\,dy\,dz.
+\]
+Събирането на тези три равенства дава формулата на Гаус-Остроградски.
+
+\textit{1. Доказателство за $\tilde{F}^3 = (0,0,F_3)$.}
+
+Тъй като $\Omega$ е цилиндрично тяло по $z$, съществуват компакт $D \subset \mathbb{R}^2$ и частично гладки функции $g_1,g_2 : D \to \mathbb{R}$ с $g_1(x,y) \le g_2(x,y)$ за всяко $(x,y) \in D$, такива че
+\[
+\overline{\Omega} = \{(x,y,z) \mid (x,y) \in D,\; g_1(x,y) \le z \le g_2(x,y)\}.
+\]
+
+Тогава
+\[
+\iiint_{\Omega} \frac{\partial F_3}{\partial z} \,dx\,dy\,dz = \iint_D \left( \int_{g_1(x,y)}^{g_2(x,y)} \frac{\partial F_3}{\partial z}(x,y,z)\,dz \right) dx\,dy = \iint_D \bigl( F_3(x,y,g_2(x,y)) - F_3(x,y,g_1(x,y)) \bigr) dx\,dy.
+\]
+
+Границата $\partial\Omega$ се състои от три части:
+\begin{align*}
+S_1 &: z = g_2(x,y),\; (x,y) \in D \quad \text{(горна капачка)},\\
+S_2 &: z = g_1(x,y),\; (x,y) \in D \quad \text{(долна капачка)},\\
+S_3 &: (x,y) \in \partial D,\; g_1(x,y) \le z \le g_2(x,y) \quad \text{(околна повърхнина)}.
+\end{align*}
+
+Върху $S_1$ външната нормала $n$ има положителна $z$-координата и съвпада с ориентацията, съгласувана с параметризацията $(x,y) \mapsto (x,y,g_2(x,y))$. От формулата за повърхнинен интеграл от втори род при явно зададена повърхнина получаваме
+\[
+\iint_{S_1} \langle \tilde{F}^3, n \rangle \,ds = \iint_D F_3(x,y,g_2(x,y)) \,dx\,dy.
+\]
+
+Върху $S_2$ външната нормала $n$ има отрицателна $z$-координата и е противоположна на ориентацията от параметризацията $(x,y) \mapsto (x,y,g_1(x,y))$. Следователно
+\[
+\iint_{S_2} \langle \tilde{F}^3, n \rangle \,ds = -\iint_D F_3(x,y,g_1(x,y)) \,dx\,dy.
+\]
+
+Върху околната повърхнина $S_3$ нормалата $n$ е хоризонтална (перпендикулярна на $z$-оста), тъй като $S_3$ е съставена от вертикални отсечки. Тогава $\langle \tilde{F}^3, n \rangle = 0$, защото $\tilde{F}^3 = (0,0,F_3)$ е вертикално поле. Следователно
+\[
+\iint_{S_3} \langle \tilde{F}^3, n \rangle \,ds = 0.
+\]
+
+Събирайки трите интеграла, получаваме
+\[
+\iint_{\partial\Omega} \langle \tilde{F}^3, n \rangle \,ds = \iint_D F_3(x,y,g_2(x,y))\,dx\,dy - \iint_D F_3(x,y,g_1(x,y))\,dx\,dy = \iiint_{\Omega} \frac{\partial F_3}{\partial z} \,dx\,dy\,dz.
+\]
+
+\textit{2. Доказателство за $\tilde{F}^2 = (0,F_2,0)$.}
+
+Тъй като $\Omega$ е цилиндрично тяло и по $y$, аналогично на горния случай съществуват компакт $D' \subset \mathbb{R}^2$ и функции $h_1,h_2 : D' \to \mathbb{R}$ с $h_1(x,z) \le h_2(x,z)$ за всяко $(x,z) \in D'$, такива че
+\[
+\overline{\Omega} = \{(x,y,z) \mid (x,z) \in D',\; h_1(x,z) \le y \le h_2(x,z)\}.
+\]
+
+Тогава
+\[
+\iiint_{\Omega} \frac{\partial F_2}{\partial y} \,dx\,dy\,dz = \iint_{D'} \left( \int_{h_1(x,z)}^{h_2(x,z)} \frac{\partial F_2}{\partial y}(x,y,z)\,dy \right) dx\,dz = \iint_{D'} \bigl( F_2(x,h_2(x,z),z) - F_2(x,h_1(x,z),z) \bigr) dx\,dz.
+\]
+
+Границата $\partial\Omega$ се представя като обединение на две капачки, зададени с $y = h_2(x,z)$ и $y = h_1(x,z)$, и околна повърхнина, където $(x,z) \in \partial D'$. За горната капачка $y = h_2(x,z)$ външната нормала $n$ има положителна $y$-координата и
+\[
+\iint_{S_1'} \langle \tilde{F}^2, n \rangle \,ds = \iint_{D'} F_2(x,h_2(x,z),z) \,dx\,dz.
+\]
+
+За долната капачка $y = h_1(x,z)$ външната нормала $n$ има отрицателна $y$-координата и
+\[
+\iint_{S_2'} \langle \tilde{F}^2, n \rangle \,ds = -\iint_{D'} F_2(x,h_1(x,z),z) \,dx\,dz.
+\]
+
+Върху околната повърхнина нормалата $n$ е перпендикулярна на $y$-оста, следователно $\langle \tilde{F}^2, n \rangle = 0$. Събирайки, получаваме
+\[
+\iint_{\partial\Omega} \langle \tilde{F}^2, n \rangle \,ds = \iint_{D'} F_2(x,h_2(x,z),z)\,dx\,dz - \iint_{D'} F_2(x,h_1(x,z),z)\,dx\,dz = \iiint_{\Omega} \frac{\partial F_2}{\partial y} \,dx\,dy\,dz.
+\]
+
+\textit{3. Доказателство за $\tilde{F}^1 = (F_1,0,0)$.}
+
+Напълно аналогично, използвайки представянето на $\Omega$ като цилиндрично тяло по $x$, получаваме
+\[
+\iint_{\partial\Omega} \langle \tilde{F}^1, n \rangle \,ds = \iiint_{\Omega} \frac{\partial F_1}{\partial x} \,dx\,dy\,dz.
+\]
+
+\textit{4. Заключение.}
+
+Събирайки трите равенства, получаваме
+\[
+\iint_{\partial\Omega} \langle F, n \rangle \,ds = \iiint_{\Omega} \left( \frac{\partial F_1}{\partial x} + \frac{\partial F_2}{\partial y} + \frac{\partial F_3}{\partial z} \right) dx\,dy\,dz = \iiint_{\Omega} \operatorname{div} F \,dx\,dy\,dz.
+\]
+
+С това теоремата на Гаус-Остроградски е доказана за област $\Omega$, която е цилиндрично тяло и по трите променливи. $\blacksquare$
+
+
+\textbf{Задача 2(3,4) }Нека $f : K \to \mathbb{R}$ е непрекъсната функция, дефинирана в компактното множество $K \subset \mathbb{R}^2$. Докажете, че графиката на $f$ е пренебрежимо множество в $\mathbb{R}^3$. 
+
+\textbf{Доказателство.} 
+Тъй като $K$ е компакт в $\mathbb{R}^2$, съществува паралелотоп $\Delta \subset \mathbb{R}^2$ (например достатъчно голям квадрат), такъв че $K \subset \Delta$. Без ограничение на общността можем да считаме, че
+\[
+\Delta = [a_1,b_1] \times [a_2,b_2], \quad \text{където } a_1 < b_1,\; a_2 < b_2.
+\]
+
+Функцията $f$ е непрекъсната върху компакта $K$, следователно е равномерно непрекъсната (Теорема на Кантор). Тогава за произволно $\varepsilon > 0$ съществува $\delta > 0$ такова, че за всяко $(x_1,y_1),(x_2,y_2) \in K$ с $\|(x_1,y_1)-(x_2,y_2)\| < \delta$ е изпълнено
+\[
+|f(x_1,y_1) - f(x_2,y_2)| < \frac{\varepsilon}{3\mu_2(\Delta)}.
+\]
+
+Нека изберем естествено число $N$ достатъчно голямо, така че $\frac{b_1-a_1}{N} < \frac{\delta}{\sqrt{2}}$ и $\frac{b_2-a_2}{N} < \frac{\delta}{\sqrt{2}}$. Разделяме паралелотопа $\Delta$ на $N^2$ малки правоъгълника
+\[
+\Delta_{ij} = [x_{i-1}, x_i] \times [y_{j-1}, y_j], \quad i,j = 1,\dots,N,
+\]
+където $x_i = a_1 + i\frac{b_1-a_1}{N}$, $y_j = a_2 + j\frac{b_2-a_2}{N}$. За всяко такова правоъгълниче диаметърът му удовлетворява
+\[
+\operatorname{diam}(\Delta_{ij}) \le \sqrt{\left(\frac{b_1-a_1}{N}\right)^2 + \left(\frac{b_2-a_2}{N}\right)^2} < \delta.
+\]
+
+Нека $I = \{ (i,j) \mid \Delta_{ij} \cap K \neq \varnothing \}$. За всяко $(i,j) \in I$ избираме произволна точка $(x_{ij}, y_{ij}) \in \Delta_{ij} \cap K$. Тогава за всяко $(x,y) \in \Delta_{ij} \cap K$ имаме $\|(x,y)-(x_{ij},y_{ij})\| < \delta$ и следователно
+\[
+|f(x,y) - f(x_{ij},y_{ij})| < \frac{\varepsilon}{3\mu_2(\Delta)}.
+\]
+
+Разглеждаме тримерните паралелотопи
+\[
+\Omega_{ij} = \Delta_{ij} \times \left[ f(x_{ij},y_{ij}) - \frac{\varepsilon}{3\mu_2(\Delta)},\; f(x_{ij},y_{ij}) + \frac{\varepsilon}{3\mu_2(\Delta)} \right], \quad (i,j) \in I.
+\]
+
+Ако $(x,y,f(x,y)) \in \operatorname{Gr}f$, то $(x,y) \in \Delta_{ij} \cap K$ за някое $(i,j) \in I$. Тогава
+\[
+|f(x,y) - f(x_{ij},y_{ij})| < \frac{\varepsilon}{3\mu_2(\Delta)},
+\]
+което означава, че $f(x,y) \in \bigl[ f(x_{ij},y_{ij}) - \frac{\varepsilon}{3\mu_2(\Delta)},\; f(x_{ij},y_{ij}) + \frac{\varepsilon}{3\mu_2(\Delta)} \bigr]$. Следователно $(x,y,f(x,y)) \in \Omega_{ij}$. Оттук
+\[
+\operatorname{Gr}f \subset \bigcup_{(i,j)\in I} \Omega_{ij}.
+\]
+
+Оценяваме сумарната мярка на тези паралелотопи:
+\[
+\sum_{(i,j)\in I} \mu_3(\Omega_{ij}) = \sum_{(i,j)\in I} \mu_2(\Delta_{ij}) \cdot \frac{2\varepsilon}{3\mu_2(\Delta)} \le \frac{2\varepsilon}{3\mu_2(\Delta)} \sum_{(i,j)\in I} \mu_2(\Delta_{ij}) \le \frac{2\varepsilon}{3\mu_2(\Delta)} \cdot \mu_2(\Delta) = \frac{2\varepsilon}{3} < \varepsilon.
+\]
+
+Тъй като $\varepsilon > 0$ беше произволно, а $I$ е крайно множество, получихме че за всяко $\varepsilon > 0$ съществува крайно (следователно изброимо) покритие на $\operatorname{Gr}f$ с паралелотопи, чиято сумарна мярка е по-малка от $\varepsilon$. Следователно $\operatorname{Gr}f$ е пренебрежимо по Лебег множество в $\mathbb{R}^3$. $\blacksquare$
+
+
+\textbf{Задача 3(5,6) }Нека $F$ е непрекъснато векторно поле, дефинирано в областта $\Omega \subset \mathbb{R}^3$. Докажете, че ако криволинейният интеграл от втори род върху частично гладка крива $\Gamma \subset \Omega$ с начало $A$ и край $B$ не зависи от $\Gamma$, а само от $A$ и $B$, то полето $F$ е потенциално.
+
+\textbf{Доказателство.} 
+Фиксираме произволна точка $\bar{x} \in \Omega$. Тъй като $\Omega$ е област, тя е линейно свързана (Твърдение 9.7). За всяко $x \in \Omega$ съществува начупена линия $L_{\bar{x}x} \subset \Omega$ с начало $\bar{x}$ и край $x$.
+
+Дефинираме функция $u : \Omega \to \mathbb{R}$ по следния начин:
+\[
+u(x) := \int_{L_{\bar{x}x}} \langle F, dr \rangle,
+\]
+където $L_{\bar{x}x}$ е произволна начупена линия в $\Omega$ с начало $\bar{x}$ и край $x$. Дефиницията е коректна, защото по условие интегралът не зависи от избора на пътя, а само от крайните точки.
+
+Ще докажем, че $u$ е потенциал за $F$, т.е. $\nabla u(x) = F(x)$ за всяко $x \in \Omega$.
+
+Нека $x \in \Omega$ и $i \in \{1,2,3\}$. Тъй като $\Omega$ е отворена, съществува $\delta > 0$ такова, че $B_\delta(x) \subset \Omega$. За $0 < |\Delta x_i| < \delta$ разглеждаме точката $x + \Delta x_i e_i$, където $e_i = (0,\dots,1,\dots,0)$ (единицата е на $i$-то място). Отсечката
+\[
+L(t) = x + t\Delta x_i e_i, \quad t \in [0,1],
+\]
+лежи в $B_\delta(x) \subset \Omega$. Тогава $L_{\bar{x}x} \cup L$ е начупена линия с начало $\bar{x}$ и край $x + \Delta x_i e_i$.
+
+От адитивността и независимостта от пътя на криволинейния интеграл получаваме
+\[
+u(x+\Delta x_i e_i) - u(x) = \int_{L_{\bar{x}}(x+\Delta x_i e_i)} \langle F, dr \rangle - \int_{L_{\bar{x}}x} \langle F, dr \rangle = \int_{L} \langle F, dr \rangle.
+\]
+
+Параметризираме отсечката $L$ с $\alpha(t) = x + t\Delta x_i e_i$, $\dot{\alpha}(t) = \Delta x_i e_i$, $t \in [0,1]$. Тогава
+\[
+\int_{L} \langle F, dr \rangle = \int_0^1 \langle F(x + t\Delta x_i e_i), \Delta x_i e_i \rangle dt = \Delta x_i \int_0^1 F_i(x + t\Delta x_i e_i) dt.
+\]
+
+Следователно
+\[
+\frac{u(x+\Delta x_i e_i) - u(x)}{\Delta x_i} = \int_0^1 F_i(x + t\Delta x_i e_i) dt.
+\]
+
+Функцията $F_i$ е непрекъсната в $\Omega$, а оттам и в компактната отсечка с краища $x$ и $x+\Delta x_i e_i$. Съгласно теоремата за средните стойности в интегралното смятане, съществува $\theta(\Delta x_i) \in (0,1)$ такова, че
+\[
+\int_0^1 F_i(x + t\Delta x_i e_i) dt = F_i(x + \theta(\Delta x_i)\Delta x_i e_i).
+\]
+
+Тогава
+\[
+\frac{u(x+\Delta x_i e_i) - u(x)}{\Delta x_i} = F_i(x + \theta(\Delta x_i)\Delta x_i e_i).
+\]
+
+Когато $\Delta x_i \to 0$, имаме $x + \theta(\Delta x_i)\Delta x_i e_i \to x$. От непрекъснатостта на $F_i$ в $x$ следва, че
+\[
+\lim_{\Delta x_i \to 0} \frac{u(x+\Delta x_i e_i) - u(x)}{\Delta x_i} = F_i(x).
+\]
+
+Това показва, че частната производна $\frac{\partial u}{\partial x_i}(x)$ съществува и е равна на $F_i(x)$ за всяко $i = 1,2,3$ и всяко $x \in \Omega$. Следователно $\nabla u(x) = F(x)$ за всяко $x \in \Omega$, което означава, че $F$ е потенциално поле с потенциал $u$. $\blacksquare$
+
+
+\section*{5}
+
+\textbf{Задача 1(1,2) }Дефинирайте Риманов интеграл от ограничената функция $f : \Delta \to \mathbb{R}$ (тук $\Delta$ е паралелотоп в $\mathbb{R}^n$) чрез подхода на Дарбу. Формулирайте и докажете двете леми, необходими за това. 
+
+
+\textbf{Дефиниция.} 
+Нека $\Delta \subset \mathbb{R}^n$ е паралелотоп и $f : \Delta \to \mathbb{R}$ е ограничена функция. 
+Нека $\Pi = \{\Delta_i\}_{i=1}^{i_0}$ е произволно подразделяне на $\Delta$. 
+За всяко $i = 1,2,\dots,i_0$ полагаме
+\[
+m_i = \inf\{f(x) \mid x \in \Delta_i\}, \qquad 
+M_i = \sup\{f(x) \mid x \in \Delta_i\}.
+\]
+
+\textit{Малка (долна) сума на Дарбу} на $f$ относно $\Pi$ се нарича
+\[
+s_f(\Pi) = \sum_{i=1}^{i_0} m_i \, \mu(\Delta_i),
+\]
+а \textit{голяма (горна) сума на Дарбу} на $f$ относно $\Pi$ се нарича
+\[
+S_f(\Pi) = \sum_{i=1}^{i_0} M_i \, \mu(\Delta_i),
+\]
+където $\mu(\Delta_i)$ е $n$-мерната мярка на $\Delta_i$.
+
+\textit{Долен интеграл на Риман} на $f$ в $\Delta$ се дефинира като
+\[
+\underline{\int_{\Delta}} f = \sup\{ s_f(\Pi) \mid \Pi \text{ е подразделяне на } \Delta \},
+\]
+а \textit{горен интеграл на Риман} на $f$ в $\Delta$ — като
+\[
+\overline{\int_{\Delta}} f = \inf\{ S_f(\Pi) \mid \Pi \text{ е подразделяне на } \Delta \}.
+\]
+
+Функцията $f$ се нарича \textit{интегруема по Риман} в $\Delta$, ако
+\[
+\underline{\int_{\Delta}} f = \overline{\int_{\Delta}} f.
+\]
+В този случай общата стойност на горния и долния интеграл се нарича \textit{Риманов интеграл} на $f$ в $\Delta$ и се означава с $\displaystyle \int_{\Delta} f$.
+
+\textbf{Лема 1.} 
+Ако $\Pi^*$ е по-фино подразделяне от $\Pi$, то
+\[
+s_f(\Pi^*) \ge s_f(\Pi), \qquad S_f(\Pi^*) \le S_f(\Pi).
+\]
+
+\textit{Доказателство.} 
+Достатъчно е да разгледаме случая, когато $\Pi^*$ се получава от $\Pi$ чрез разделяне на един елемент. 
+Нека $\Pi = \{\Delta_1, \Delta_2, \dots, \Delta_{i_0}\}$ и $\Pi^*$ се получава от $\Pi$ чрез разделяне на $\Delta_1$ на $\Delta_1^1, \Delta_1^2, \dots, \Delta_1^{j_0}$. 
+Тогава
+\[
+s_f(\Pi^*) - s_f(\Pi) = \sum_{j=1}^{j_0} m_1^j \mu(\Delta_1^j) + \sum_{i=2}^{i_0} m_i \mu(\Delta_i) - \sum_{i=1}^{i_0} m_i \mu(\Delta_i) = \sum_{j=1}^{j_0} m_1^j \mu(\Delta_1^j) - m_1 \mu(\Delta_1).
+\]
+
+Тъй като $\Delta_1^j \subset \Delta_1$, имаме $m_1 \le m_1^j$ за всяко $j$. Оттук
+\[
+\sum_{j=1}^{j_0} m_1^j \mu(\Delta_1^j) \ge \sum_{j=1}^{j_0} m_1 \mu(\Delta_1^j) = m_1 \sum_{j=1}^{j_0} \mu(\Delta_1^j) = m_1 \mu(\Delta_1).
+\]
+
+Следователно $s_f(\Pi^*) - s_f(\Pi) \ge 0$, т.е. $s_f(\Pi^*) \ge s_f(\Pi)$.
+
+Аналогично, от $M_1^j \le M_1$ получаваме
+\[
+S_f(\Pi^*) - S_f(\Pi) = \sum_{j=1}^{j_0} M_1^j \mu(\Delta_1^j) - M_1 \mu(\Delta_1) \le \sum_{j=1}^{j_0} M_1 \mu(\Delta_1^j) - M_1 \mu(\Delta_1) = 0,
+\]
+откъдето $S_f(\Pi^*) \le S_f(\Pi)$. $\blacksquare$
+
+\textbf{Лема 2.} 
+За произволни две подразделяния $\Pi_1$ и $\Pi_2$ на $\Delta$ е в сила
+\[
+s_f(\Pi_1) \le S_f(\Pi_2).
+\]
+
+\textit{Доказателство.} 
+Нека $\Pi^*$ е подразделяне на $\Delta$, което е по-фино едновременно от $\Pi_1$ и $\Pi_2$ (например сечението на елементите на $\Pi_1$ и $\Pi_2$). 
+Тогава от Лема 1 следва
+\[
+s_f(\Pi_1) \le s_f(\Pi^*) \le S_f(\Pi^*) \le S_f(\Pi_2).
+\]
+
+Средното неравенство $s_f(\Pi^*) \le S_f(\Pi^*)$ следва от факта, че $m_i \le M_i$ за всяко $i$. $\blacksquare$
+
+
+
+\textbf{Задача 2(2,3) }Докажете, че всяко компактно пренебрежимо по Лебег множество е измеримо по Пеано-Жордан и мярката му (в $\mathbb{R}^n$) е нула. 
+
+\textbf{Доказателство.} 
+Нека $K \subset \mathbb{R}^n$ е компактно и пренебрежимо по Лебег. Тогава за всяко $\varepsilon > 0$ съществуват изброимо много паралелотопи $\{\Delta_k\}_{k=1}^\infty$ с
+\[
+K \subset \bigcup_{k=1}^\infty \Delta_k, \qquad \sum_{k=1}^\infty \mu(\Delta_k) < \varepsilon.
+\]
+
+Тъй като $K$ е компакт, от отвореното покритие $\{\operatorname{int}\Delta_k\}_{k=1}^\infty$ можем да изберем крайно подпокритие. Следователно съществуват $\Delta_{k_1},\dots,\Delta_{k_m}$ с
+\[
+K \subset \bigcup_{i=1}^m \Delta_{k_i}, \qquad \sum_{i=1}^m \mu(\Delta_{k_i}) < \varepsilon.
+\]
+
+Така за всяко $\varepsilon > 0$ имаме крайно покритие на $K$ с паралелотопи със сумарна мярка $<\varepsilon$.
+
+За да проверим измеримост по Пеано-Жордан, разглеждаме характеристичната функция $\chi_K$. Нека $\Delta$ е паралелотоп, съдържащ $K$. Множеството от точки на прекъсване на $\chi_K$ е точно $\partial K$. Тъй като $\partial K \subset K$ и $K$ се покрива с паралелотопи със сумарна мярка $<\varepsilon$, то и $\partial K$ се покрива със същите паралелотопи. Следователно $\partial K$ е пренебрежимо по Лебег.
+
+Функцията $\chi_K$ е ограничена, а множеството от точките ѝ на прекъсване е пренебрежимо по Лебег. Според критерия на Лебег, $\chi_K$ е интегруема по Риман в $\Delta$. Следователно $K$ е измеримо по Пеано-Жордан.
+
+Остана да докажем, че мярката на $K$ е нула. За целта оценяваме горния интеграл на $\chi_K$. За произволно $\varepsilon > 0$ избираме крайно покритие $\{\Omega_j\}_{j=1}^m$ на $K$ с $\sum \mu(\Omega_j) < \varepsilon$. Нека $\Pi$ е подразделяне на $\Delta$, по-фино от тези $\Omega_j$. Тогава
+\[
+S_{\chi_K}(\Pi) \le \sum_{j=1}^m \mu(\Omega_j) < \varepsilon.
+\]
+
+Следователно $\overline{\int_\Delta} \chi_K = 0$. От интегруемостта на $\chi_K$ имаме
+\[
+\int_\Delta \chi_K = \overline{\int_\Delta} \chi_K = 0,
+\]
+което означава, че $\mu_n(K) = 0$. $\blacksquare$
+
+
+\textbf{Задача 3(5-) }Разгледайте хомогенна материална нишка с плътност $1$, разположена по полуокръжност с радиус $R$ (да мислим, че центърът ѝ е в началото на координатната система и тя е в горната полуравнина). Пресметнете координатите на центъра на тежестта на нишката. 
+
+\textbf{Задача 4(5-) }Каква е гравитационната сила, с която материалната нишка притегля материална точка с маса $m_0$, разположена в началото на координатната система?
+
+\textbf{Задача 5(6) }Да разгледаме гладкото векторно поле $F(x) = x \cos\|x\|$, където $x = (x_1,x_2,x_3) \in \mathbb{R}^3$. Пресметнете $\operatorname{div} F(x)$ и $\operatorname{rot} F(x)$.
+
+\textbf{Решение.} 
+Нека $r = \|x\| = \sqrt{x_1^2 + x_2^2 + x_3^2}$. Тогава $F(x) = (x_1 \cos r,\; x_2 \cos r,\; x_3 \cos r)$.
+
+\textit{1. Дивергенция.}
+\[
+\operatorname{div} F = \frac{\partial}{\partial x_1}(x_1\cos r) + \frac{\partial}{\partial x_2}(x_2\cos r) + \frac{\partial}{\partial x_3}(x_3\cos r).
+\]
+
+Пресмятаме частните производни за $i = 1,2,3$:
+\[
+\frac{\partial}{\partial x_i}(x_i\cos r) = \cos r + x_i \cdot (-\sin r)\frac{\partial r}{\partial x_i} = \cos r - x_i \sin r \cdot \frac{x_i}{r} = \cos r - \frac{x_i^2}{r}\sin r.
+\]
+
+Следователно
+\[
+\operatorname{div} F = \sum_{i=1}^3 \left( \cos r - \frac{x_i^2}{r}\sin r \right) = 3\cos r - \frac{x_1^2 + x_2^2 + x_3^2}{r}\sin r = 3\cos r - \frac{r^2}{r}\sin r = 3\cos r - r\sin r.
+\]
+
+Така
+\[
+\boxed{\operatorname{div} F(x) = 3\cos\|x\| - \|x\|\sin\|x\|}.
+\]
+
+\textit{2. Ротор.}
+\[
+\operatorname{rot} F = \nabla \times F = \left( \frac{\partial F_3}{\partial x_2} - \frac{\partial F_2}{\partial x_3},\; \frac{\partial F_1}{\partial x_3} - \frac{\partial F_3}{\partial x_1},\; \frac{\partial F_2}{\partial x_1} - \frac{\partial F_1}{\partial x_2} \right).
+\]
+
+Първо пресмятаме всички частни производни, като използваме $\frac{\partial r}{\partial x_i} = \frac{x_i}{r}$ и $\frac{\partial}{\partial x_i}\cos r = -\sin r \cdot \frac{x_i}{r}$:
+
+\[
+\frac{\partial F_1}{\partial x_2} = \frac{\partial}{\partial x_2}(x_1\cos r) = x_1 \cdot (-\sin r)\frac{x_2}{r} = -\frac{x_1x_2}{r}\sin r.
+\]
+\[
+\frac{\partial F_1}{\partial x_3} = \frac{\partial}{\partial x_3}(x_1\cos r) = x_1 \cdot (-\sin r)\frac{x_3}{r} = -\frac{x_1x_3}{r}\sin r.
+\]
+\[
+\frac{\partial F_2}{\partial x_1} = \frac{\partial}{\partial x_1}(x_2\cos r) = x_2 \cdot (-\sin r)\frac{x_1}{r} = -\frac{x_1x_2}{r}\sin r.
+\]
+\[
+\frac{\partial F_2}{\partial x_3} = \frac{\partial}{\partial x_3}(x_2\cos r) = x_2 \cdot (-\sin r)\frac{x_3}{r} = -\frac{x_2x_3}{r}\sin r.
+\]
+\[
+\frac{\partial F_3}{\partial x_1} = \frac{\partial}{\partial x_1}(x_3\cos r) = x_3 \cdot (-\sin r)\frac{x_1}{r} = -\frac{x_1x_3}{r}\sin r.
+\]
+\[
+\frac{\partial F_3}{\partial x_2} = \frac{\partial}{\partial x_2}(x_3\cos r) = x_3 \cdot (-\sin r)\frac{x_2}{r} = -\frac{x_2x_3}{r}\sin r.
+\]
+
+Сега пресмятаме компонентите на ротора:
+
+\[
+(\operatorname{rot} F)_1 = \frac{\partial F_3}{\partial x_2} - \frac{\partial F_2}{\partial x_3} = -\frac{x_2x_3}{r}\sin r - \left(-\frac{x_2x_3}{r}\sin r\right) = 0.
+\]
+\[
+(\operatorname{rot} F)_2 = \frac{\partial F_1}{\partial x_3} - \frac{\partial F_3}{\partial x_1} = -\frac{x_1x_3}{r}\sin r - \left(-\frac{x_1x_3}{r}\sin r\right) = 0.
+\]
+\[
+(\operatorname{rot} F)_3 = \frac{\partial F_2}{\partial x_1} - \frac{\partial F_1}{\partial x_2} = -\frac{x_1x_2}{r}\sin r - \left(-\frac{x_1x_2}{r}\sin r\right) = 0.
+\]
+
+Следователно
+\[
+\boxed{\operatorname{rot} F(x) = (0,0,0)}.
+\]
+
+\textbf{Задача 6(4) }Използвайте принципа на Кавалиери, за да пресметнете обема на четиримерното кълбо $B_r^4 = \{(x_1,x_2,x_3,x_4)\in\mathbb{R}^4 : x_1^2+x_2^2+x_3^2+x_4^2 \le r^2\}$ с радиус $r$. (Използвайте наготово, че обемът на тримерното кълбо с радиус $r$ е $4\pi r^3/3$.)
+
+\textbf{Решение.} 
+Съгласно принципа на Кавалиери (Лекция 5, §5.2.3), обемът на $n$-мерно тяло може да се получи чрез интегриране на $(n-1)$-мерните мерки на сеченията му с фамилия успоредни равнини.
+
+За $n=4$ фиксираме последната координата $x_4$ и разглеждаме сечението на кълбото с хиперравнината $x_4 = \text{const}$:
+\[
+B_r^4(x_4) = \{(x_1,x_2,x_3) \in \mathbb{R}^3 \mid x_1^2+x_2^2+x_3^2 \le r^2 - x_4^2\}.
+\]
+
+Това сечение е непразно точно когато $x_4^2 \le r^2$, т.е. $x_4 \in [-r,r]$. В този случай то представлява тримерно кълбо с радиус $\sqrt{r^2 - x_4^2}$. От условието знаем, че обемът на тримерно кълбо с радиус $\rho$ е $\frac{4}{3}\pi \rho^3$. Следователно
+\[
+\mu_3\bigl(B_r^4(x_4)\bigr) = \frac{4}{3}\pi \bigl(\sqrt{r^2 - x_4^2}\bigr)^3 = \frac{4}{3}\pi (r^2 - x_4^2)^{3/2}.
+\]
+
+Прилагаме принципа на Кавалиери:
+\[
+\mu_4(B_r^4) = \int_{-r}^{r} \mu_3\bigl(B_r^4(x_4)\bigr) \,dx_4 = \int_{-r}^{r} \frac{4}{3}\pi (r^2 - x_4^2)^{3/2} \,dx_4.
+\]
+
+Подинтегралната функция е четна, следователно
+\[
+\mu_4(B_r^4) = 2 \cdot \frac{4}{3}\pi \int_{0}^{r} (r^2 - x^2)^{3/2} \,dx = \frac{8\pi}{3} \int_{0}^{r} (r^2 - x^2)^{3/2} \,dx.
+\]
+
+Пресмятаме интеграла чрез полагането $x = r\sin t$, $dx = r\cos t\,dt$, $t \in [0,\frac{\pi}{2}]$:
+\[
+(r^2 - x^2)^{3/2} = (r^2 - r^2\sin^2 t)^{3/2} = (r^2\cos^2 t)^{3/2} = r^3 \cos^3 t.
+\]
+Тогава
+\[
+\int_0^r (r^2 - x^2)^{3/2} dx = \int_0^{\pi/2} r^3 \cos^3 t \cdot r\cos t \,dt = r^4 \int_0^{\pi/2} \cos^4 t \,dt.
+\]
+
+За $\int_0^{\pi/2} \cos^4 t \,dt$ използваме формулата за понижаване на степента:
+\[
+\cos^4 t = \left(\frac{1+\cos 2t}{2}\right)^2 = \frac{1}{4} + \frac{1}{2}\cos 2t + \frac{1}{4}\cos^2 2t = \frac{1}{4} + \frac{1}{2}\cos 2t + \frac{1}{8}(1+\cos 4t) = \frac{3}{8} + \frac{1}{2}\cos 2t + \frac{1}{8}\cos 4t.
+\]
+Интегрираме в интервала $[0,\pi/2]$:
+\[
+\int_0^{\pi/2} \cos^4 t \,dt = \int_0^{\pi/2} \frac{3}{8} dt + \frac{1}{2}\int_0^{\pi/2} \cos 2t \,dt + \frac{1}{8}\int_0^{\pi/2} \cos 4t \,dt = \frac{3}{8}\cdot\frac{\pi}{2} + 0 + 0 = \frac{3\pi}{16}.
+\]
+
+Следователно
+\[
+\int_0^r (r^2 - x^2)^{3/2} dx = r^4 \cdot \frac{3\pi}{16} = \frac{3\pi}{16} r^4.
+\]
+
+Окончателно
+\[
+\mu_4(B_r^4) = \frac{8\pi}{3} \cdot \frac{3\pi}{16} r^4 = \frac{8\pi \cdot 3\pi}{3 \cdot 16} r^4 = \frac{24\pi^2}{48} r^4 = \frac{\pi^2}{2} r^4.
+\]
+
+Така обемът на четиримерното кълбо с радиус $r$ е
+\[
+\boxed{\mu_4(B_r^4) = \frac{\pi^2}{2} r^4}.
+\]
+
+\textbf{Задача 7(6,7,8) }Пресметнете интеграла на Гаус $\iint_S \langle (x-x_0)/\|x-x_0\|^3, n\rangle \,ds$, където $S$ е частично гладка повърхнина, контур на областта $G$ и $x_0 \in G$. 
+
+\textbf{Решение.} 
+Нека $G \subset \mathbb{R}^3$ е ограничена област с частично гладка граница $\partial G = S$, ориентирана с външната (за $G$) единична нормала $n$. Нека $x_0 \in G$ е произволна фиксирана точка.
+
+Разглеждаме векторното поле
+\[
+F(x) = \frac{x - x_0}{\|x - x_0\|^3}, \quad x \neq x_0.
+\]
+
+Първо пресмятаме дивергенцията на $F$ за $x \neq x_0$. Нека $r = \|x - x_0\|$. Тогава $F(x) = (x - x_0)/r^3$. За $i = 1,2,3$ имаме
+\[
+\frac{\partial}{\partial x_i} \frac{x_i - x_{0i}}{r^3} = \frac{1}{r^3} - 3\frac{(x_i - x_{0i})^2}{r^5}.
+\]
+
+Следователно
+\[
+\operatorname{div} F(x) = \sum_{i=1}^3 \left( \frac{1}{r^3} - 3\frac{(x_i - x_{0i})^2}{r^5} \right) = \frac{3}{r^3} - \frac{3r^2}{r^5} = \frac{3}{r^3} - \frac{3}{r^3} = 0.
+\]
+
+Така $\operatorname{div} F(x) = 0$ за всяко $x \neq x_0$.
+
+Разглеждаме два случая.
+
+\textit{Случай 1.} $x_0 \notin G$. Тогава $F$ е гладко векторно поле в затворената обвивка на $G$. Прилагаме формулата на Гаус-Остроградски:
+\[
+\iint_{\partial G} \langle F, n \rangle ds = \iiint_G \operatorname{div} F \,dx\,dy\,dz = \iiint_G 0 \,dx\,dy\,dz = 0.
+\]
+
+\textit{Случай 2.} $x_0 \in G$. Тъй като $G$ е отворена, съществува $\varepsilon > 0$ такова, че затвореното кълбо $\overline{B}_\varepsilon(x_0)$ се съдържа в $G$. Да разгледаме областта
+\[
+G_\varepsilon = G \setminus \overline{B}_\varepsilon(x_0).
+\]
+Нейната граница $\partial G_\varepsilon$ се състои от две части: $\partial G = S$ и сферата $\partial B_\varepsilon(x_0)$, като външната нормала върху $\partial B_\varepsilon(x_0)$ сочи към $x_0$, т.е.
+\[
+n = -\frac{x - x_0}{\|x - x_0\|} \quad \text{за } x \in \partial B_\varepsilon(x_0).
+\]
+
+В $G_\varepsilon$ полето $F$ е гладко и $\operatorname{div} F = 0$. Прилагаме формулата на Гаус-Остроградски в $G_\varepsilon$:
+\[
+\iint_{\partial G_\varepsilon} \langle F, n \rangle ds = \iiint_{G_\varepsilon} \operatorname{div} F \,dx\,dy\,dz = 0.
+\]
+
+Но
+\[
+\iint_{\partial G_\varepsilon} \langle F, n \rangle ds = \iint_{\partial G} \langle F, n \rangle ds + \iint_{\partial B_\varepsilon(x_0)} \langle F, n \rangle ds.
+\]
+
+Върху $\partial B_\varepsilon(x_0)$ имаме $\|x - x_0\| = \varepsilon$ и $n = -\frac{x - x_0}{\varepsilon}$. Тогава
+\[
+\langle F, n \rangle = \left\langle \frac{x - x_0}{\varepsilon^3}, -\frac{x - x_0}{\varepsilon} \right\rangle = -\frac{\langle x - x_0, x - x_0 \rangle}{\varepsilon^4} = -\frac{\varepsilon^2}{\varepsilon^4} = -\frac{1}{\varepsilon^2}.
+\]
+
+Следователно
+\[
+\iint_{\partial B_\varepsilon(x_0)} \langle F, n \rangle ds = -\frac{1}{\varepsilon^2} \cdot \mu_2(\partial B_\varepsilon(x_0)) = -\frac{1}{\varepsilon^2} \cdot 4\pi\varepsilon^2 = -4\pi.
+\]
+
+От равенството
+\[
+0 = \iint_{\partial G} \langle F, n \rangle ds + (-4\pi)
+\]
+получаваме
+\[
+\iint_{\partial G} \langle F, n \rangle ds = 4\pi.
+\]
+
+\textbf{Заключение.} 
+\[
+\boxed{\iint_S \left\langle \frac{x - x_0}{\|x - x_0\|^3}, n \right\rangle ds = \begin{cases}
+0, & x_0 \notin G, \\[4pt]
+4\pi, & x_0 \in G.
+\end{cases}}
+\]
+
+
+\textbf{Задача 8(6) }Пресметнете $\iint_S \frac{ds}{(10-y)^2}$, $S = \{(x,y,z)\in\mathbb{R}^3 : x+2y+3z=6,\; x\ge0,\; y\ge0,\; z\ge0\}$.
+
+\textbf{Решение.} 
+Повърхнината $S$ е част от равнината $x + 2y + 3z = 6$, намираща се в първи октант. Тя е триъгълник с върхове в пресечниците на равнината с координатните оси:
+
+- с оста $x$: $y = z = 0 \Rightarrow x = 6$ — точка $(6,0,0)$,
+- с оста $y$: $x = z = 0 \Rightarrow 2y = 6 \Rightarrow y = 3$ — точка $(0,3,0)$,
+- с оста $z$: $x = y = 0 \Rightarrow 3z = 6 \Rightarrow z = 2$ — точка $(0,0,2)$.
+
+Повърхнината е зададена явно като графика на функция. Изразяваме $x$ чрез $y$ и $z$:
+\[
+x = 6 - 2y - 3z.
+\]
+Условията $x \ge 0$, $y \ge 0$, $z \ge 0$ дават
+\[
+6 - 2y - 3z \ge 0 \quad \Longrightarrow \quad 2y + 3z \le 6,\quad y \ge 0,\; z \ge 0.
+\]
+
+Проекцията на $S$ върху равнината $Oyz$ е правоъгълен триъгълник:
+\[
+D = \{(y,z) \mid 0 \le y \le 3,\; 0 \le z \le \frac{6-2y}{3}\}.
+\]
+
+Параметризираме повърхнината с $(y,z)$:
+\[
+\mathbf{r}(y,z) = (6-2y-3z,\; y,\; z).
+\]
+
+Частните производни са:
+\[
+\mathbf{r}_y = (-2,1,0), \quad \mathbf{r}_z = (-3,0,1).
+\]
+
+Нормалният вектор е
+\[
+\mathbf{r}_y \times \mathbf{r}_z = 
+\begin{vmatrix}
+\mathbf{i} & \mathbf{j} & \mathbf{k} \\
+-2 & 1 & 0 \\
+-3 & 0 & 1
+\end{vmatrix} = (1\cdot1 - 0\cdot0,\; 0\cdot(-3) - (-2)\cdot1,\; (-2)\cdot0 - 1\cdot(-3)) = (1,\; 2,\; 3).
+\]
+
+Големината на нормалния вектор е
+\[
+\|\mathbf{r}_y \times \mathbf{r}_z\| = \sqrt{1^2 + 2^2 + 3^2} = \sqrt{1+4+9} = \sqrt{14}.
+\]
+
+Елементът на повърхнината е $ds = \|\mathbf{r}_y \times \mathbf{r}_z\| \, dy\,dz = \sqrt{14} \, dy\,dz$.
+
+Подинтегралната функция е $\frac{1}{(10-y)^2}$ и не зависи от $x$ и $z$. Следователно
+\[
+\iint_S \frac{ds}{(10-y)^2} = \iint_D \frac{1}{(10-y)^2} \, \sqrt{14} \, dy\,dz = \sqrt{14} \iint_D \frac{1}{(10-y)^2} \, dy\,dz.
+\]
+
+Интегрираме по $z$:
+\[
+\int_{0}^{\frac{6-2y}{3}} dz = \frac{6-2y}{3}.
+\]
+
+Тогава
+\[
+\iint_D \frac{1}{(10-y)^2} \, dy\,dz = \int_0^3 \frac{1}{(10-y)^2} \cdot \frac{6-2y}{3} \, dy = \frac{1}{3} \int_0^3 \frac{6-2y}{(10-y)^2} \, dy.
+\]
+
+Пресмятаме интеграла. Полагаме $u = 10 - y$, тогава $y = 10 - u$, $dy = -du$. При $y = 0$ имаме $u = 10$, при $y = 3$ имаме $u = 7$. Също $6-2y = 6 - 2(10-u) = 6 - 20 + 2u = 2u - 14 = 2(u-7)$. Тогава
+\[
+\int_0^3 \frac{6-2y}{(10-y)^2} \, dy = \int_{u=10}^{7} \frac{2(u-7)}{u^2} (-du) = \int_{7}^{10} \frac{2(u-7)}{u^2} \, du = 2\int_{7}^{10} \left( \frac{1}{u} - \frac{7}{u^2} \right) du.
+\]
+
+Пресмятаме:
+\[
+2\int_{7}^{10} \frac{du}{u} = 2[\ln u]_{7}^{10} = 2(\ln 10 - \ln 7) = 2\ln\frac{10}{7},
+\]
+\[
+2\int_{7}^{10} \frac{7}{u^2} du = 14\int_{7}^{10} u^{-2} du = 14\left[-\frac{1}{u}\right]_{7}^{10} = 14\left(-\frac{1}{10} + \frac{1}{7}\right) = 14\left(\frac{-7+10}{70}\right) = 14\cdot\frac{3}{70} = \frac{42}{70} = \frac{3}{5}.
+\]
+
+Следователно
+\[
+\int_0^3 \frac{6-2y}{(10-y)^2} \, dy = 2\ln\frac{10}{7} - \frac{3}{5}.
+\]
+
+Тогава
+\[
+\iint_D \frac{1}{(10-y)^2} \, dy\,dz = \frac{1}{3} \left( 2\ln\frac{10}{7} - \frac{3}{5} \right).
+\]
+
+Окончателно
+\[
+\iint_S \frac{ds}{(10-y)^2} = \sqrt{14} \cdot \frac{1}{3} \left( 2\ln\frac{10}{7} - \frac{3}{5} \right) = \frac{\sqrt{14}}{3} \left( 2\ln\frac{10}{7} - \frac{3}{5} \right).
+\]
+
+\[
+\boxed{\frac{\sqrt{14}}{3} \left( 2\ln\frac{10}{7} - \frac{3}{5} \right)}
+\]
+
+
+\textbf{Задача 9(4,5) }Изразете криволинейния интеграл от първи род $\int_\Gamma f(x,y)\,ds$ чрез обикновен Риманов интеграл, ако кривата $\Gamma$ е зададена в полярни координати чрез уравнението $\rho = \rho(\varphi)$, където $\rho$ е полярният радиус, $\varphi$ е полярният ъгъл и $\varphi$ се мени в интервала $[\varphi_1,\varphi_2]$. Използвайте полученото, за да пресметнете интеграла $\int_\Gamma (x-y)\,ds$, където $\Gamma = \{x^2+y^2=x\}$, параметризирайки кривата $\Gamma$ по подходящ начин.
+
+\textbf{Решение.} 
+
+\textit{1. Представяне на криволинейния интеграл в полярни координати.}
+
+Кривата $\Gamma$ е зададена в полярни координати с $\rho = \rho(\varphi)$, $\varphi \in [\varphi_1,\varphi_2]$. Параметризацията в декартови координати е
+\[
+x = \rho(\varphi)\cos\varphi, \quad y = \rho(\varphi)\sin\varphi, \quad \varphi \in [\varphi_1,\varphi_2].
+\]
+
+Пресмятаме производните:
+\[
+\frac{dx}{d\varphi} = \rho'(\varphi)\cos\varphi - \rho(\varphi)\sin\varphi, \quad
+\frac{dy}{d\varphi} = \rho'(\varphi)\sin\varphi + \rho(\varphi)\cos\varphi.
+\]
+
+Елементът на дължина е
+\[
+ds = \sqrt{\left(\frac{dx}{d\varphi}\right)^2 + \left(\frac{dy}{d\varphi}\right)^2} \, d\varphi.
+\]
+
+Пресмятаме:
+\[
+\left(\frac{dx}{d\varphi}\right)^2 + \left(\frac{dy}{d\varphi}\right)^2 = \bigl(\rho'\cos\varphi - \rho\sin\varphi\bigr)^2 + \bigl(\rho'\sin\varphi + \rho\cos\varphi\bigr)^2.
+\]
+
+Разкриваме скобите:
+\[
+= \rho'^2\cos^2\varphi - 2\rho\rho'\cos\varphi\sin\varphi + \rho^2\sin^2\varphi + \rho'^2\sin^2\varphi + 2\rho\rho'\sin\varphi\cos\varphi + \rho^2\cos^2\varphi.
+\]
+
+Събираме:
+\[
+= \rho'^2(\cos^2\varphi+\sin^2\varphi) + \rho^2(\sin^2\varphi+\cos^2\varphi) = \rho'^2 + \rho^2.
+\]
+
+Следователно
+\[
+ds = \sqrt{\rho^2(\varphi) + \rho'^2(\varphi)} \, d\varphi.
+\]
+
+Тогава криволинейният интеграл от първи род се изразява като
+\[
+\int_\Gamma f(x,y)\,ds = \int_{\varphi_1}^{\varphi_2} f\bigl(\rho(\varphi)\cos\varphi,\; \rho(\varphi)\sin\varphi\bigr) \, \sqrt{\rho^2(\varphi) + \rho'^2(\varphi)} \, d\varphi.
+\]
+
+\textit{2. Пресмятане на $\int_\Gamma (x-y)\,ds$ за $\Gamma = \{x^2+y^2=x\}$.}
+
+Уравнението $x^2+y^2=x$ преобразуваме:
+\[
+x^2 - x + y^2 = 0 \quad \Longrightarrow \quad \left(x - \frac{1}{2}\right)^2 + y^2 = \left(\frac{1}{2}\right)^2.
+\]
+Това е окръжност с център $\left(\frac{1}{2},0\right)$ и радиус $\frac{1}{2}$. В полярни координати $x = \rho\cos\varphi$, $y = \rho\sin\varphi$ уравнението става
+\[
+\rho^2\cos^2\varphi + \rho^2\sin^2\varphi = \rho\cos\varphi \quad \Longrightarrow \quad \rho^2 = \rho\cos\varphi.
+\]
+
+При $\rho \ge 0$ получаваме $\rho = \cos\varphi$ за $\cos\varphi \ge 0$, т.е. $\varphi \in [-\pi/2,\pi/2]$. Следователно параметризацията е
+\[
+\rho(\varphi) = \cos\varphi, \quad \varphi \in [-\pi/2,\pi/2].
+\]
+
+Пресмятаме $\rho'(\varphi) = -\sin\varphi$. Тогава
+\[
+\sqrt{\rho^2 + \rho'^2} = \sqrt{\cos^2\varphi + \sin^2\varphi} = 1.
+\]
+
+Следователно $ds = d\varphi$.
+
+Подинтегралната функция в полярни координати е
+\[
+x - y = \rho\cos\varphi - \rho\sin\varphi = \cos\varphi \cdot \cos\varphi - \cos\varphi \cdot \sin\varphi = \cos^2\varphi - \cos\varphi\sin\varphi.
+\]
+
+Тогава
+\[
+\int_\Gamma (x-y)\,ds = \int_{-\pi/2}^{\pi/2} (\cos^2\varphi - \cos\varphi\sin\varphi) \, d\varphi.
+\]
+
+Пресмятаме:
+\[
+\int_{-\pi/2}^{\pi/2} \cos^2\varphi \, d\varphi = 2\int_0^{\pi/2} \cos^2\varphi \, d\varphi = 2 \cdot \frac{\pi}{4} = \frac{\pi}{2},
+\]
+\[
+\int_{-\pi/2}^{\pi/2} \cos\varphi\sin\varphi \, d\varphi = \frac12 \int_{-\pi/2}^{\pi/2} \sin 2\varphi \, d\varphi = 0,
+\]
+тъй като подинтегралната функция е нечетна.
+
+Следователно
+\[
+\int_\Gamma (x-y)\,ds = \frac{\pi}{2}.
+\]
+
+\[
+\boxed{\frac{\pi}{2}}
+\]
+
+
+\textbf{Задача 10(4,5) }Пресметнете криволинейния интеграл от втори род $\oint_\Gamma \frac{y-2}{(x-3)^2+(y-2)^2}\,dx - \frac{x-3}{(x-3)^2+(y-2)^2}\,dy$, където $\Gamma$ е произволна проста затворена частично гладка крива, не съдържаща точката $(3,2)$. Упътване: Отговорът зависи от взаимното разположение на точката и кривата!
+
+\textbf{Решение.} 
+Нека 
+\[
+P(x,y) = \frac{y-2}{(x-3)^2+(y-2)^2}, \qquad 
+Q(x,y) = -\frac{x-3}{(x-3)^2+(y-2)^2}.
+\]
+
+Полето $(P,Q)$ е дефинирано и гладко в $\Omega = \mathbb{R}^2 \setminus \{(3,2)\}$. 
+
+Пресмятаме частните производни за $(x,y) \neq (3,2)$. Нека $r = \sqrt{(x-3)^2+(y-2)^2}$. Тогава
+\[
+P = \frac{y-2}{r^2}, \quad Q = -\frac{x-3}{r^2}.
+\]
+
+Пресмятаме:
+\[
+\frac{\partial P}{\partial y} = \frac{1 \cdot r^2 - (y-2) \cdot 2r \cdot \frac{y-2}{r}}{r^4} = \frac{r^2 - 2(y-2)^2}{r^4} = \frac{1}{r^2} - \frac{2(y-2)^2}{r^4},
+\]
+\[
+\frac{\partial Q}{\partial x} = \frac{-1 \cdot r^2 - (-(x-3)) \cdot 2r \cdot \frac{x-3}{r}}{r^4} = \frac{-r^2 + 2(x-3)^2}{r^4} = -\frac{1}{r^2} + \frac{2(x-3)^2}{r^4}.
+\]
+
+Следователно
+\[
+\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = \left(-\frac{1}{r^2} + \frac{2(x-3)^2}{r^4}\right) - \left(\frac{1}{r^2} - \frac{2(y-2)^2}{r^4}\right) = -\frac{2}{r^2} + \frac{2(x-3)^2 + 2(y-2)^2}{r^4}.
+\]
+
+Но $(x-3)^2+(y-2)^2 = r^2$, така че
+\[
+\frac{2(x-3)^2 + 2(y-2)^2}{r^4} = \frac{2r^2}{r^4} = \frac{2}{r^2}.
+\]
+
+Оттук
+\[
+\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = -\frac{2}{r^2} + \frac{2}{r^2} = 0.
+\]
+
+Следователно полето $(P,Q)$ удовлетворява $\frac{\partial Q}{\partial x} = \frac{\partial P}{\partial y}$ в $\Omega$.
+
+Нека $\Gamma$ е проста затворена частично гладка крива, която не минава през точката $(3,2)$. Означаваме с $G$ областта, заградена от $\Gamma$. Имаме два случая.
+
+\textit{Случай 1.} Точката $(3,2)$ не принадлежи на $G$ (т.е. тя е извън областта, заградена от $\Gamma$). 
+Тогава $(3,2) \notin \overline{G}$, следователно полето $(P,Q)$ е гладко в затворената обвивка на $G$. Можем да приложим формулата на Грийн:
+\[
+\oint_\Gamma P\,dx + Q\,dy = \iint_G \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right) dx\,dy = \iint_G 0 \,dx\,dy = 0.
+\]
+
+\textit{Случай 2.} Точката $(3,2)$ принадлежи на $G$ (т.е. тя е вътре в областта, заградена от $\Gamma$). 
+Тогава не можем директно да приложим формулата на Грийн, защото полето има особеност в $(3,2)$. Изрязваме тази точка. Нека $\varepsilon > 0$ е достатъчно малко, така че окръжността $C_\varepsilon$ с център $(3,2)$ и радиус $\varepsilon$ да се съдържа в $G$. Ориентираме $C_\varepsilon$ положително (обратно на часовниковата стрелка). 
+
+Разглеждаме областта $G_\varepsilon = G \setminus \overline{B}_\varepsilon(3,2)$. Нейната граница се състои от $\Gamma$ и $C_\varepsilon$, като $C_\varepsilon$ е ориентирана отрицателно спрямо $G_\varepsilon$ (т.е. по часовниковата стрелка). Записваме $\partial G_\varepsilon = \Gamma \cup (-C_\varepsilon)$.
+
+В $G_\varepsilon$ полето е гладко, така че прилагаме формулата на Грийн:
+\[
+\oint_{\partial G_\varepsilon} P\,dx + Q\,dy = \iint_{G_\varepsilon} 0 \,dx\,dy = 0.
+\]
+
+Следователно
+\[
+0 = \oint_{\Gamma} P\,dx + Q\,dy + \oint_{-C_\varepsilon} P\,dx + Q\,dy = \oint_{\Gamma} P\,dx + Q\,dy - \oint_{C_\varepsilon} P\,dx + Q\,dy.
+\]
+
+Оттук
+\[
+\oint_{\Gamma} P\,dx + Q\,dy = \oint_{C_\varepsilon} P\,dx + Q\,dy.
+\]
+
+Пресмятаме интеграла по $C_\varepsilon$. Параметризираме $C_\varepsilon$ с 
+\[
+x = 3 + \varepsilon\cos t, \quad y = 2 + \varepsilon\sin t, \quad t \in [0,2\pi].
+\]
+Тогава $dx = -\varepsilon\sin t\,dt$, $dy = \varepsilon\cos t\,dt$, и $(x-3)^2+(y-2)^2 = \varepsilon^2$.
+
+Пресмятаме:
+\[
+P = \frac{y-2}{(x-3)^2+(y-2)^2} = \frac{\varepsilon\sin t}{\varepsilon^2} = \frac{\sin t}{\varepsilon},
+\]
+\[
+Q = -\frac{x-3}{(x-3)^2+(y-2)^2} = -\frac{\varepsilon\cos t}{\varepsilon^2} = -\frac{\cos t}{\varepsilon}.
+\]
+
+Тогава
+\[
+P\,dx + Q\,dy = \frac{\sin t}{\varepsilon} \cdot (-\varepsilon\sin t\,dt) + \left(-\frac{\cos t}{\varepsilon}\right) \cdot (\varepsilon\cos t\,dt) = -\sin^2 t\,dt - \cos^2 t\,dt = -(\sin^2 t + \cos^2 t)\,dt = -dt.
+\]
+
+Следователно
+\[
+\oint_{C_\varepsilon} P\,dx + Q\,dy = \int_0^{2\pi} (-dt) = -2\pi.
+\]
+
+Така
+\[
+\oint_{\Gamma} P\,dx + Q\,dy = -2\pi.
+\]
+
+\textbf{Заключение.} 
+\[
+\boxed{\oint_\Gamma \frac{y-2}{(x-3)^2+(y-2)^2}\,dx - \frac{x-3}{(x-3)^2+(y-2)^2}\,dy = 
+\begin{cases}
+0, & (3,2) \text{ е извън } \Gamma, \\[4pt]
+-2\pi, & (3,2) \text{ е вътре в } \Gamma.
+\end{cases}}
+\]
+
+\textbf{Задача 11(3,4) }Дайте дефиниция на "множество, измеримо по Пеано-Жордан".
+
+\textbf{Дефиниция} 
+Нека $A \subset \mathbb{R}^n$ е ограничено подмножество и $\Delta \subset \mathbb{R}^n$ е произволен паралелотоп, съдържащ $A$ (т.е. $A \subset \Delta$). 
+Казваме, че $A$ е \textit{измеримо по Пеано-Жордан}, ако характеристичната функция $\chi_A$ е интегруема по Риман в $\Delta$.
+
+В такъв случай $n$-мерната \textit{мярка на Пеано-Жордан} на $A$ се дефинира като
+\[
+\mu_n(A) := \int_{\Delta} \chi_A.
+\]
+
+Дефиницията е коректна, т.е. не зависи от избора на паралелотопа $\Delta$, съдържащ $A$.
+
+
+\textbf{Задача 12(3,4) }Формулирайте необходимо и достатъчно условие едно множество да е измеримо по Пеано-Жордан. 
+
+\textbf{(Критерий за измеримост по Пеано-Жордан).} 
+Нека $A \subset \mathbb{R}^n$ е ограничено множество. Тогава следните твърдения са еквивалентни:
+
+\begin{enumerate}
+    \item[(а)] $A$ е измеримо по Пеано-Жордан.
+    
+    \item[(б)] Контурът $\partial A$ на $A$ е пренебрежим по Лебег (т.е. има Лебегова мярка нула).
+    
+    \item[(в)] За всяко $\varepsilon > 0$ съществуват краен брой паралелотопи $\{\Delta_i\}_{i=1}^{i_0}$ такива, че
+    \[
+    \bigcup_{i=1}^{i_0} \Delta_i \supset \partial A \quad \text{и} \quad \sum_{i=1}^{i_0} \mu_n(\Delta_i) < \varepsilon.
+    \]
+\end{enumerate}
+
+С други думи, едно ограничено множество е измеримо по Пеано-Жордан точно тогава, когато контурът му е пренебрежим по Лебег (или еквивалентно — може да се покрие с краен брой паралелотопи с произволно малка сумарна мярка).
+
+
+\textbf{Задача 13(8) }Формулирайте и докажете закона на Архимед. 
+
+\textbf{Закон на Архимед.} 
+Нека тяло е потопено в течност с относително тегло $\rho$. Избираме координатна система така, че равнината $z = 0$ съвпада с повърхността на течността, а оста $z$ е насочена надолу. Нека $\Omega \subset \mathbb{R}^3$ е ограничена област, представляваща тялото, с частично гладка граница $\partial\Omega$, ориентирана с външната единична нормала $n$. Тогава върху тялото действа сила
+\[
+P = (0,0, -\rho \cdot \mu_3(\Omega)),
+\]
+насочена вертикално нагоре, с големина, равна на теглото на изместената течност. Освен това тази сила е приложена в центъра на масите на геометричното тяло $\Omega$ (т.е. не създава въртящ момент спрямо тази точка).
+
+\textbf{Доказателство.} 
+Налягането в течността на дълбочина $z$ е $\rho z$ и действа перпендикулярно на повърхността на тялото, навътре в тялото. Следователно елементарната сила върху елемент $ds$ от повърхността е
+\[
+p(x,y,z) = -\rho z \, n(x,y,z),
+\]
+където знакът минус показва, че силата е насочена срещу външната нормала (навътре в тялото).
+
+Равнодействащата на елементарните налягания е повърхнинен интеграл от първи род:
+\[
+P = \iint_{\partial\Omega} p(x,y,z) \, ds = -\rho \iint_{\partial\Omega} z \, n(x,y,z) \, ds.
+\]
+
+Това е тримерен вектор $P = (P_1,P_2,P_3)$. Разглеждаме всяка компонента поотделно.
+
+\textit{1. Пресмятане на $P_1$ и $P_2$.} 
+За $P_1$ избираме поле $F = (z,0,0)$. Тогава $\langle F, n \rangle = z n_1$ и
+\[
+P_1 = -\rho \iint_{\partial\Omega} \langle F, n \rangle \, ds.
+\]
+Прилагаме формулата на Гаус-Остроградски:
+\[
+P_1 = -\rho \iiint_{\Omega} \operatorname{div} F \, dx\,dy\,dz = -\rho \iiint_{\Omega} \left( \frac{\partial}{\partial x}z + \frac{\partial}{\partial y}0 + \frac{\partial}{\partial z}0 \right) dx\,dy\,dz = -\rho \iiint_{\Omega} 0 \, dx\,dy\,dz = 0.
+\]
+
+Аналогично, за $P_2$ избираме $G = (0,z,0)$ и получаваме $\operatorname{div} G = 0$, следователно $P_2 = 0$.
+
+\textit{2. Пресмятане на $P_3$.} 
+За $P_3$ избираме $H = (0,0,z)$. Тогава $\langle H, n \rangle = z n_3$ и
+\[
+P_3 = -\rho \iint_{\partial\Omega} \langle H, n \rangle \, ds = -\rho \iiint_{\Omega} \operatorname{div} H \, dx\,dy\,dz = -\rho \iiint_{\Omega} \frac{\partial}{\partial z}z \, dx\,dy\,dz = -\rho \iiint_{\Omega} 1 \, dx\,dy\,dz = -\rho \cdot \mu_3(\Omega).
+\]
+
+Тъй като оста $z$ е насочена надолу, отрицателният знак означава, че силата е насочена нагоре. Така
+\[
+P = (0,0, -\rho \cdot \mu_3(\Omega)).
+\]
+
+\textit{3. Приложна точка на силата (център на масите).} 
+Фиксираме точка $(x_0,y_0,z_0)$ и търсим момента $M$ на силата $P$ спрямо тази точка като интеграл от моментите на елементарните налягания:
+\[
+M = \iint_{\partial\Omega} ((x,y,z) - (x_0,y_0,z_0)) \times p(x,y,z) \, ds = -\rho \iint_{\partial\Omega} ((x,y,z)-(x_0,y_0,z_0)) \times (z n) \, ds.
+\]
+
+Пресмятаме покоординатно.
+
+За $M_1$:
+\[
+M_1 = -\rho \iint_{\partial\Omega} z[(y-y_0)n_3 - (z-z_0)n_2] \, ds = -\rho \iint_{\partial\Omega} \langle (0, -z(z-z_0), z(y-y_0)), n \rangle \, ds.
+\]
+Прилагаме Гаус-Остроградски:
+\[
+M_1 = -\rho \iiint_{\Omega} \left( \frac{\partial}{\partial x}0 + \frac{\partial}{\partial y}(-z(z-z_0)) + \frac{\partial}{\partial z}(z(y-y_0)) \right) dx\,dy\,dz = -\rho \iiint_{\Omega} (y-y_0) \, dx\,dy\,dz.
+\]
+
+За $M_2$:
+\[
+M_2 = -\rho \iint_{\partial\Omega} z[(z-z_0)n_1 - (x-x_0)n_3] \, ds = -\rho \iint_{\partial\Omega} \langle (z(z-z_0), 0, -z(x-x_0)), n \rangle \, ds,
+\]
+\[
+M_2 = -\rho \iiint_{\Omega} \left( \frac{\partial}{\partial x}(z(z-z_0)) + \frac{\partial}{\partial y}0 + \frac{\partial}{\partial z}(-z(x-x_0)) \right) dx\,dy\,dz = -\rho \iiint_{\Omega} (x_0 - x) \, dx\,dy\,dz.
+\]
+
+За $M_3$:
+\[
+M_3 = -\rho \iint_{\partial\Omega} z[(x-x_0)n_2 - (y-y_0)n_1] \, ds = -\rho \iint_{\partial\Omega} \langle (-z(y-y_0), z(x-x_0), 0), n \rangle \, ds,
+\]
+\[
+M_3 = -\rho \iiint_{\Omega} \left( \frac{\partial}{\partial x}(-z(y-y_0)) + \frac{\partial}{\partial y}(z(x-x_0)) + \frac{\partial}{\partial z}0 \right) dx\,dy\,dz = 0.
+\]
+
+Силата $P$ не създава въртящ момент спрямо $(x_0,y_0,z_0)$ точно когато $M_1 = M_2 = M_3 = 0$. От $M_1 = 0$ и $M_2 = 0$ получаваме
+\[
+\iiint_{\Omega} y \, dx\,dy\,dz = y_0 \mu_3(\Omega), \qquad
+\iiint_{\Omega} x \, dx\,dy\,dz = x_0 \mu_3(\Omega).
+\]
+
+Следователно
+\[
+x_0 = \frac{1}{\mu_3(\Omega)} \iiint_{\Omega} x \, dx\,dy\,dz, \quad
+y_0 = \frac{1}{\mu_3(\Omega)} \iiint_{\Omega} y \, dx\,dy\,dz,
+\]
+а $z_0$ е произволно. Това са точно координатите на центъра на масите на геометричното тяло $\Omega$ (при хомогенна плътност). Така архимедовата сила е плъзгащ вектор по вертикалната права, минаваща през центъра на масите на $\Omega$.
+
+С това законът на Архимед е доказан. $\blacksquare$
+
+
+\textbf{Задача 14(8) }Нека $F$ е гладко векторно поле в $\mathbb{R}^3$. Да означим с $S_\varepsilon$ сферата с център $x$ и радиус $\varepsilon$, ориентирана с външната (към кълбото) нормала. Докажете, че $\operatorname{div} F(x) = \displaystyle \lim_{\varepsilon\to 0} \frac{\iint_{S_\varepsilon} \langle F, n\rangle \,ds}{\frac{4}{3}\pi \varepsilon^3}$.
+
+\textbf{Доказателство.} 
+Нека $x \in \mathbb{R}^3$ е произволна фиксирана точка. За $\varepsilon > 0$ достатъчно малко разглеждаме сферата $S_\varepsilon = \partial B_\varepsilon(x)$ с център $x$ и радиус $\varepsilon$, ориентирана с външната (спрямо кълбото $B_\varepsilon(x)$) единична нормала $n$. Тогава $n(y) = \frac{y-x}{\|y-x\|}$ за $y \in S_\varepsilon$.
+
+Прилагаме формулата на Гаус-Остроградски за кълбото $B_\varepsilon(x)$:
+\[
+\iint_{S_\varepsilon} \langle F, n \rangle \,ds = \iiint_{B_\varepsilon(x)} \operatorname{div} F(y) \,dy.
+\]
+
+Следователно
+\[
+\frac{\iint_{S_\varepsilon} \langle F, n\rangle \,ds}{\frac{4}{3}\pi \varepsilon^3} = \frac{1}{\mu(B_\varepsilon(x))} \iiint_{B_\varepsilon(x)} \operatorname{div} F(y) \,dy,
+\]
+където $\mu(B_\varepsilon(x)) = \frac{4}{3}\pi \varepsilon^3$ е обемът на кълбото.
+
+Тъй като $\operatorname{div} F$ е непрекъсната функция (полето $F$ е гладко), тя е непрекъсната в точката $x$. За всяко $\delta > 0$ съществува $\eta > 0$ такова, че за всички $y$ с $\|y-x\| < \eta$ е изпълнено
+\[
+|\operatorname{div} F(y) - \operatorname{div} F(x)| < \delta.
+\]
+
+Нека $\varepsilon < \eta$. Тогава за всяко $y \in B_\varepsilon(x)$ имаме $\|y-x\| < \varepsilon < \eta$, следователно
+\[
+\operatorname{div} F(x) - \delta < \operatorname{div} F(y) < \operatorname{div} F(x) + \delta.
+\]
+
+Интегрираме неравенството върху $B_\varepsilon(x)$:
+\[
+(\operatorname{div} F(x) - \delta) \cdot \mu(B_\varepsilon(x)) \le \iiint_{B_\varepsilon(x)} \operatorname{div} F(y) \,dy \le (\operatorname{div} F(x) + \delta) \cdot \mu(B_\varepsilon(x)).
+\]
+
+Делим на $\mu(B_\varepsilon(x)) > 0$:
+\[
+\operatorname{div} F(x) - \delta \le \frac{1}{\mu(B_\varepsilon(x))} \iiint_{B_\varepsilon(x)} \operatorname{div} F(y) \,dy \le \operatorname{div} F(x) + \delta.
+\]
+
+Следователно
+\[
+\left| \frac{1}{\mu(B_\varepsilon(x))} \iiint_{B_\varepsilon(x)} \operatorname{div} F(y) \,dy - \operatorname{div} F(x) \right| < \delta
+\]
+за всяко $\varepsilon < \eta$.
+
+Това означава, че
+\[
+\lim_{\varepsilon\to 0} \frac{1}{\mu(B_\varepsilon(x))} \iiint_{B_\varepsilon(x)} \operatorname{div} F(y) \,dy = \operatorname{div} F(x).
+\]
+
+Като използваме формулата на Гаус-Остроградски, получаваме
+\[
+\operatorname{div} F(x) = \lim_{\varepsilon\to 0} \frac{\iint_{S_\varepsilon} \langle F, n\rangle \,ds}{\frac{4}{3}\pi \varepsilon^3}.
+\]
+
+Това равенство изразява факта, че дивергенцията на векторно поле е граница на потока на полето през сфера, стремяща се към точката, отнесен към обема на сферата. $\blacksquare$
+
+
+\section*{4}
+
+\textbf{Задача 1(1) }Формулирайте теоремата на Вайерщрас за изображения. Докажете, че ако $f : K \to \mathbb{R}^m$ е непрекъсната инекция с компактна дефиниционна област $K \subset \mathbb{R}^n$, то обратната биекция $f^{-1} : f(K) \to K$ е непрекъсната. 
+
+\textbf{Вайерщрас за изображения.} 
+Нека $K \subset \mathbb{R}^n$ е компактно множество и $f : K \to \mathbb{R}^m$ е непрекъснато изображение. Тогава образът $f(K)$ е компактно подмножество на $\mathbb{R}^m$.
+
+\textit{Доказателство на теоремата на Вайерщрас.} 
+Нека $\{y_l\}_{l=1}^\infty \subset f(K)$ е произволна редица. За всяко $l$ съществува $x_l \in K$ с $y_l = f(x_l)$. Тъй като $K$ е компакт, от редицата $\{x_l\}$ можем да изберем сходяща подредица $\{x_{l_k}\}_{k=1}^\infty$ с граница $x_0 \in K$. От непрекъснатостта на $f$ следва, че $y_{l_k} = f(x_{l_k}) \to f(x_0) \in f(K)$. Следователно всяка редица във $f(K)$ има сходяща подредица с граница във $f(K)$, което означава, че $f(K)$ е компакт. $\blacksquare$
+
+\textbf{Твърдение} 
+Нека $f : K \to \mathbb{R}^m$ е непрекъсната инекция с компактна дефиниционна област $K \subset \mathbb{R}^n$. Тогава обратната биекция $f^{-1} : f(K) \to K$ е непрекъсната.
+
+\textbf{Доказателство.} 
+Ще използваме характеризацията на непрекъснатост чрез релативно отворени множества (Твърдение 1.14): едно изображение $g : D \to \mathbb{R}^n$ е непрекъснато в $D$ точно тогава, когато първообразът $g^{-1}(U)$ на всяко отворено множество $U \subset \mathbb{R}^n$ е релативно отворен в $D$.
+
+Нека $U \subset \mathbb{R}^n$ е произволно отворено множество. Тогава
+\[
+(f^{-1})^{-1}(U) = \{ y \in f(K) \mid f^{-1}(y) \in U \} = \{ f(x) \mid x \in U \cap K \} = f(U \cap K).
+\]
+
+Множеството $K \setminus U$ е затворено (като сечение на затвореното $K$ с допълнението на отвореното $U$) и ограничено (тъй като $K$ е компакт, следователно ограничено), значи е компактно. От теоремата на Вайерщрас следва, че $f(K \setminus U)$ е компактно подмножество на $\mathbb{R}^m$, а оттам и затворено множество.
+
+Тогава
+\[
+f(U \cap K) = f(K) \setminus f(K \setminus U)
+\]
+е разлика на затвореното множество $f(K)$ и затвореното множество $f(K \setminus U)$. Следователно $f(U \cap K) = (\mathbb{R}^m \setminus f(K \setminus U)) \cap f(K)$ е сечение на отвореното множество $\mathbb{R}^m \setminus f(K \setminus U)$ с $f(K)$. Следователно $f(U \cap K)$ е \textit{релативно отворено} в $f(K)$.
+
+Тъй като $f(U \cap K) = (f^{-1})^{-1}(U)$ е релативно отворено във $f(K)$ за всяко отворено $U \subset \mathbb{R}^n$, от Твърдение 1.14 следва, че $f^{-1}$ е непрекъснато изображение. $\blacksquare$
+
+
+\textbf{Задача 2(7) }Пресметнете площта на тора: $\varphi(u,v) = ((a+b\cos u)\cos v,\; (a+b\cos u)\sin v,\; a+b\sin u)$, $(u,v)\in[0,2\pi]\times[0,2\pi]$, $a>b>0$. 
+
+\textbf{Решение.} 
+Торът е гладка параметрично зададена повърхнина. За да пресметнем лицето му, използваме формулата
+\[
+\mu_2(S) = \iint_{[0,2\pi]\times[0,2\pi]} \sqrt{EG - F^2} \, du\,dv,
+\]
+където $E$, $F$, $G$ са коефициентите на първата квадратична форма.
+
+Пресмятаме частните производни:
+\[
+\varphi_u = \frac{\partial\varphi}{\partial u} = (-b\sin u \cos v,\; -b\sin u \sin v,\; b\cos u),
+\]
+\[
+\varphi_v = \frac{\partial\varphi}{\partial v} = (-(a+b\cos u)\sin v,\; (a+b\cos u)\cos v,\; 0).
+\]
+
+Сега пресмятаме коефициентите:
+\[
+E = \langle \varphi_u, \varphi_u \rangle = b^2\sin^2 u \cos^2 v + b^2\sin^2 u \sin^2 v + b^2\cos^2 u = b^2\sin^2 u + b^2\cos^2 u = b^2.
+\]
+
+\[
+G = \langle \varphi_v, \varphi_v \rangle = (a+b\cos u)^2\sin^2 v + (a+b\cos u)^2\cos^2 v = (a+b\cos u)^2.
+\]
+
+\[
+F = \langle \varphi_u, \varphi_v \rangle = (-b\sin u\cos v)\cdot(-(a+b\cos u)\sin v) + (-b\sin u\sin v)\cdot((a+b\cos u)\cos v) + (b\cos u)\cdot 0.
+\]
+\[
+= b\sin u\cos v (a+b\cos u)\sin v - b\sin u\sin v (a+b\cos u)\cos v = b(a+b\cos u)\sin u (\cos v\sin v - \sin v\cos v) = 0.
+\]
+
+Следователно $F = 0$, което означава, че координатните линии са ортогонални.
+
+Тогава
+\[
+\sqrt{EG - F^2} = \sqrt{b^2 \cdot (a+b\cos u)^2 - 0} = b\,(a+b\cos u),
+\]
+като $b>0$ и $a+b\cos u > 0$, защото $a>b$.
+
+Лицето на тора е
+\[
+\mu_2(S) = \int_0^{2\pi} \int_0^{2\pi} b\,(a+b\cos u) \, du\,dv = \int_0^{2\pi} b \left( \int_0^{2\pi} (a+b\cos u) \, du \right) dv.
+\]
+
+Пресмятаме вътрешния интеграл:
+\[
+\int_0^{2\pi} (a+b\cos u) \, du = a\cdot 2\pi + b\cdot 0 = 2\pi a.
+\]
+
+Тогава
+\[
+\mu_2(S) = \int_0^{2\pi} b \cdot 2\pi a \, dv = 2\pi a b \int_0^{2\pi} dv = 2\pi a b \cdot 2\pi = 4\pi^2 a b.
+\]
+
+Следователно лицето на тора е
+\[
+\boxed{4\pi^2 a b}.
+\]
+
+
+
+\textbf{Задача 3(5,6) }Напишете в явен вид потенциал за гладко векторно поле, удовлетворяващо необходимото условие за потенциалност, в област, която е отворен паралелепипед в $\mathbb{R}^3$ (и докажете, че така написаната функция е наистина потенциал за полето). 
+
+\textbf{Решение.} 
+Нека $\Delta \subset \mathbb{R}^3$ е отворен паралелепипед, т.е.
+\[
+\Delta = (a_1,b_1) \times (a_2,b_2) \times (a_3,b_3).
+\]
+Нека $F = (F_1,F_2,F_3)$ е гладко векторно поле в $\Delta$, което удовлетворява необходимото условие за потенциалност:
+\[
+\frac{\partial F_1}{\partial x_2} = \frac{\partial F_2}{\partial x_1},\quad
+\frac{\partial F_1}{\partial x_3} = \frac{\partial F_3}{\partial x_1},\quad
+\frac{\partial F_2}{\partial x_3} = \frac{\partial F_3}{\partial x_2}, \qquad \forall x \in \Delta.
+\]
+
+Фиксираме произволна точка $\bar{x} = (\bar{x}_1,\bar{x}_2,\bar{x}_3) \in \Delta$. Тъй като $\Delta$ е отворен паралелепипед, отсечките, успоредни на координатните оси, лежат в $\Delta$.
+
+Дефинираме функция $u : \Delta \to \mathbb{R}$ с формулата
+\[
+u(x_1,x_2,x_3) = \int_{\bar{x}_1}^{x_1} F_1(t,\bar{x}_2,\bar{x}_3)\,dt + \int_{\bar{x}_2}^{x_2} F_2(x_1,t,\bar{x}_3)\,dt + \int_{\bar{x}_3}^{x_3} F_3(x_1,x_2,t)\,dt.
+\]
+
+Ще докажем, че $\nabla u = F$ в $\Delta$.
+
+\textit{1. Производна по $x_1$.} 
+Диференцираме $u$ по $x_1$. Първият интеграл зависи от $x_1$ като горна граница, вторият и третият съдържат $x_1$ като параметър в подинтегралната функция. Използваме Лема 10.8 (Лайбниц):
+\[
+\frac{\partial u}{\partial x_1} = F_1(x_1,\bar{x}_2,\bar{x}_3) + \int_{\bar{x}_2}^{x_2} \frac{\partial F_2}{\partial x_1}(x_1,t,\bar{x}_3)\,dt + \int_{\bar{x}_3}^{x_3} \frac{\partial F_3}{\partial x_1}(x_1,x_2,t)\,dt.
+\]
+
+От необходимото условие за потенциалност имаме $\frac{\partial F_2}{\partial x_1} = \frac{\partial F_1}{\partial x_2}$ и $\frac{\partial F_3}{\partial x_1} = \frac{\partial F_1}{\partial x_3}$. Заместваме:
+\[
+\frac{\partial u}{\partial x_1} = F_1(x_1,\bar{x}_2,\bar{x}_3) + \int_{\bar{x}_2}^{x_2} \frac{\partial F_1}{\partial x_2}(x_1,t,\bar{x}_3)\,dt + \int_{\bar{x}_3}^{x_3} \frac{\partial F_1}{\partial x_3}(x_1,x_2,t)\,dt.
+\]
+
+Интегралите се пресмятат чрез формулата на Нютон-Лайбниц:
+\[
+\int_{\bar{x}_2}^{x_2} \frac{\partial F_1}{\partial x_2}(x_1,t,\bar{x}_3)\,dt = F_1(x_1,x_2,\bar{x}_3) - F_1(x_1,\bar{x}_2,\bar{x}_3),
+\]
+\[
+\int_{\bar{x}_3}^{x_3} \frac{\partial F_1}{\partial x_3}(x_1,x_2,t)\,dt = F_1(x_1,x_2,x_3) - F_1(x_1,x_2,\bar{x}_3).
+\]
+
+Събираме:
+\[
+\frac{\partial u}{\partial x_1} = F_1(x_1,\bar{x}_2,\bar{x}_3) + \bigl(F_1(x_1,x_2,\bar{x}_3) - F_1(x_1,\bar{x}_2,\bar{x}_3)\bigr) + \bigl(F_1(x_1,x_2,x_3) - F_1(x_1,x_2,\bar{x}_3)\bigr) = F_1(x_1,x_2,x_3).
+\]
+
+\textit{2. Производна по $x_2$.} 
+Диференцираме $u$ по $x_2$. Първият интеграл не зависи от $x_2$, вторият зависи от $x_2$ като горна граница, третият съдържа $x_2$ като параметър:
+\[
+\frac{\partial u}{\partial x_2} = 0 + F_2(x_1,x_2,\bar{x}_3) + \int_{\bar{x}_3}^{x_3} \frac{\partial F_3}{\partial x_2}(x_1,x_2,t)\,dt.
+\]
+
+От необходимото условие $\frac{\partial F_3}{\partial x_2} = \frac{\partial F_2}{\partial x_3}$, следователно
+\[
+\frac{\partial u}{\partial x_2} = F_2(x_1,x_2,\bar{x}_3) + \int_{\bar{x}_3}^{x_3} \frac{\partial F_2}{\partial x_3}(x_1,x_2,t)\,dt = F_2(x_1,x_2,\bar{x}_3) + \bigl(F_2(x_1,x_2,x_3) - F_2(x_1,x_2,\bar{x}_3)\bigr) = F_2(x_1,x_2,x_3).
+\]
+
+\textit{3. Производна по $x_3$.} 
+Диференцираме $u$ по $x_3$. Първите два интеграла не зависят от $x_3$, третият зависи от $x_3$ като горна граница:
+\[
+\frac{\partial u}{\partial x_3} = 0 + 0 + F_3(x_1,x_2,x_3) = F_3(x_1,x_2,x_3).
+\]
+
+\textit{Заключение.} 
+Получихме, че $\frac{\partial u}{\partial x_i} = F_i$ за $i = 1,2,3$ във всяка точка $x \in \Delta$. Следователно $\nabla u = F$ в $\Delta$, т.е. $u$ е потенциал за векторното поле $F$.
+
+Ако изберем друга начална точка $\bar{x}$, полученият потенциал се различава с константа. $\blacksquare$
+
+
+\textbf{Задача 4(3,4) }Формулирайте теоремата на Лебег (за интегруемост по Риман). 
+
+\textbf{Kритерий на Лебег за интегруемост по Риман.} 
+Нека $\Delta \subset \mathbb{R}^n$ е паралелотоп и $f : \Delta \to \mathbb{R}$ е ограничена функция. Тогава $f$ е интегруема по Риман в $\Delta$ точно тогава, когато множеството от точките на прекъсване на $f$ е пренебрежимо по Лебег (т.е. има Лебегова мярка нула).
+
+С други думи, една ограничена функция е интегруема по Риман тогава и само тогава, когато тя е непрекъсната с изключение на множество с мярка нула.
+
+
+\textbf{Задача 5(3,4) }Дайте дефиниция на индикаторна (характеристична) функция на подмножество $A$ на $\mathbb{R}^n$. Намерете (с обосновка) множеството от точките на прекъсване на тази функция. 
+
+\textbf{Дефиниция 4.1.} 
+Нека $A \subset \mathbb{R}^n$. Функцията $\chi_A : \mathbb{R}^n \to \mathbb{R}$, дефинирана с
+\[
+\chi_A(x) := 
+\begin{cases}
+1, & \text{ако } x \in A, \\[4pt]
+0, & \text{ако } x \notin A,
+\end{cases}
+\]
+се нарича \textit{индикаторна (характеристична) функция} на множеството $A$.
+
+\textbf{Твърдение.} 
+Множеството от точките на прекъсване на $\chi_A$ е точно контурът $\partial A$ на множеството $A$.
+
+\textit{Доказателство.} 
+Нека $x \in \mathbb{R}^n$. Разглеждаме три случая:
+
+\textit{Случай 1.} $x \in \operatorname{int} A$. 
+Тогава съществува $\varepsilon > 0$ такова, че $B_\varepsilon(x) \subset A$. Следователно $\chi_A(y) = 1$ за всяко $y \in B_\varepsilon(x)$. Следователно $\chi_A$ е константа (и непрекъсната) в $x$.
+
+\textit{Случай 2.} $x \in \operatorname{int}(\mathbb{R}^n \setminus A)$. 
+Тогава съществува $\varepsilon > 0$ такова, че $B_\varepsilon(x) \subset \mathbb{R}^n \setminus A$. Следователно $\chi_A(y) = 0$ за всяко $y \in B_\varepsilon(x)$. Следователно $\chi_A$ е константа (и непрекъсната) в $x$.
+
+\textit{Случай 3.} $x \in \partial A$. 
+Тогава всяка отворена околност $U$ на $x$ съдържа както точки от $A$, така и точки от $\mathbb{R}^n \setminus A$. Следователно във всяка околност на $x$ функцията $\chi_A$ приема както стойност $1$, така и стойност $0$. Това означава, че $\chi_A$ е прекъсната в $x$.
+
+Следователно $\chi_A$ е непрекъсната точно във вътрешните точки на $A$ и във вътрешните точки на допълнението, а прекъсната е точно в точките на контура $\partial A$. $\blacksquare$
+
+
+
+\textbf{Задача 6(5,6,7) }Разгледайте хомогенна материална нишка, разположена по половин арка на циклоидата: $\alpha(t) = (t-\sin t,\; 1-\cos t)$, $0 \le t \le \pi$. Намерете центъра на масите на тази нишка.
+
+\textbf{Решение.} 
+Нишката е хомогенна, т.е. има постоянна линейна плътност $\rho = 1$. Тогава масата на нишката е равна на дължината ѝ, а координатите на центъра на масите се дават с формулите
+\[
+x_c = \frac{1}{L} \int_\Gamma x\,ds, \quad y_c = \frac{1}{L} \int_\Gamma y\,ds,
+\]
+където $L = \int_\Gamma ds$ е дължината на кривата.
+
+\textit{1. Дължина на кривата.}
+Параметризацията е $\alpha(t) = (t-\sin t,\; 1-\cos t)$. Пресмятаме производните:
+\[
+\dot{\alpha}(t) = (1-\cos t,\; \sin t).
+\]
+Дължината на кривата се пресмята по формулата $L = \int_0^\pi \|\dot{\alpha}(t)\|\,dt$:
+\[
+\|\dot{\alpha}(t)\| = \sqrt{(1-\cos t)^2 + \sin^2 t} = \sqrt{1 - 2\cos t + \cos^2 t + \sin^2 t} = \sqrt{2 - 2\cos t} = \sqrt{4\sin^2\frac{t}{2}} = 2\left|\sin\frac{t}{2}\right|.
+\]
+За $t \in [0,\pi]$ имаме $\sin\frac{t}{2} \ge 0$, следователно
+\[
+\|\dot{\alpha}(t)\| = 2\sin\frac{t}{2}.
+\]
+Тогава
+\[
+L = \int_0^\pi 2\sin\frac{t}{2}\,dt = 2\int_0^\pi \sin\frac{t}{2}\,dt = 2\left[-2\cos\frac{t}{2}\right]_0^\pi = -4\left(\cos\frac{\pi}{2} - \cos0\right) = -4(0 - 1) = 4.
+\]
+
+\textit{2. Пресмятане на $\int_\Gamma x\,ds$.}
+\[
+\int_\Gamma x\,ds = \int_0^\pi (t-\sin t) \cdot 2\sin\frac{t}{2}\,dt.
+\]
+Разделяме интеграла на два:
+\[
+\int_0^\pi t \cdot 2\sin\frac{t}{2}\,dt - \int_0^\pi \sin t \cdot 2\sin\frac{t}{2}\,dt = 2I_1 - 2I_2.
+\]
+
+Пресмятаме $I_1 = \int_0^\pi t\sin\frac{t}{2}\,dt$ с интегриране по части:
+\[
+u = t,\quad dv = \sin\frac{t}{2}\,dt,\quad du = dt,\quad v = -2\cos\frac{t}{2}.
+\]
+\[
+I_1 = \left[-2t\cos\frac{t}{2}\right]_0^\pi - \int_0^\pi (-2\cos\frac{t}{2})\,dt = -2\pi\cos\frac{\pi}{2} + 2\cdot0\cdot\cos0 + 2\int_0^\pi \cos\frac{t}{2}\,dt.
+\]
+\[
+\cos\frac{\pi}{2} = 0,\quad \int_0^\pi \cos\frac{t}{2}\,dt = \left[2\sin\frac{t}{2}\right]_0^\pi = 2\sin\frac{\pi}{2} - 2\sin0 = 2\cdot1 - 0 = 2.
+\]
+Следователно $I_1 = 0 + 2\cdot2 = 4$.
+
+Пресмятаме $I_2 = \int_0^\pi \sin t \cdot \sin\frac{t}{2}\,dt$. Използваме формулата $\sin t = 2\sin\frac{t}{2}\cos\frac{t}{2}$:
+\[
+I_2 = \int_0^\pi 2\sin\frac{t}{2}\cos\frac{t}{2} \cdot \sin\frac{t}{2}\,dt = 2\int_0^\pi \sin^2\frac{t}{2} \cos\frac{t}{2}\,dt.
+\]
+Полагаме $u = \sin\frac{t}{2}$, $du = \frac12\cos\frac{t}{2}\,dt$, т.е. $\cos\frac{t}{2}\,dt = 2du$. При $t=0$: $u=0$, при $t=\pi$: $u=\sin\frac{\pi}{2}=1$. Тогава
+\[
+I_2 = 2\int_0^1 u^2 \cdot 2du = 4\int_0^1 u^2 du = 4\cdot\frac{1}{3} = \frac{4}{3}.
+\]
+
+Следователно
+\[
+\int_\Gamma x\,ds = 2I_1 - 2I_2 = 2\cdot4 - 2\cdot\frac{4}{3} = 8 - \frac{8}{3} = \frac{24-8}{3} = \frac{16}{3}.
+\]
+
+\textit{3. Пресмятане на $\int_\Gamma y\,ds$.}
+\[
+\int_\Gamma y\,ds = \int_0^\pi (1-\cos t) \cdot 2\sin\frac{t}{2}\,dt = 2\int_0^\pi (1-\cos t)\sin\frac{t}{2}\,dt.
+\]
+
+Използваме формулата $1-\cos t = 2\sin^2\frac{t}{2}$:
+\[
+\int_\Gamma y\,ds = 2\int_0^\pi 2\sin^2\frac{t}{2} \cdot \sin\frac{t}{2}\,dt = 4\int_0^\pi \sin^3\frac{t}{2}\,dt.
+\]
+
+Полагаме $u = \frac{t}{2}$, $dt = 2du$, при $t=0$: $u=0$, при $t=\pi$: $u=\frac{\pi}{2}$:
+\[
+\int_\Gamma y\,ds = 4\int_0^{\pi/2} \sin^3 u \cdot 2du = 8\int_0^{\pi/2} \sin^3 u\,du.
+\]
+
+Използваме формулата $\int_0^{\pi/2} \sin^3 u\,du = \frac{2}{3}$ (или пресмятаме: $\sin^3u = \sin u(1-\cos^2u)$, полагаме $v=\cos u$). Следователно
+\[
+\int_\Gamma y\,ds = 8\cdot\frac{2}{3} = \frac{16}{3}.
+\]
+
+\textit{4. Център на масите.}
+Масата на нишката е $L = 4$. Тогава
+\[
+x_c = \frac{1}{4} \cdot \frac{16}{3} = \frac{4}{3}, \qquad y_c = \frac{1}{4} \cdot \frac{16}{3} = \frac{4}{3}.
+\]
+
+Следователно центърът на масите на нишката е
+\[
+\boxed{\left(\frac{4}{3},\; \frac{4}{3}\right)}.
+\]
+
+
+\textbf{Задача 7(6,7) }Пресметнете лицето на елипсоида $x^2/a^2 + y^2/a^2 + z^2/b^2 = 1$, където $a$ и $b$ са положителни параметри. Упътване: Използвайте обобщени сферични координати. 
+
+\textbf{Решение.} 
+Елипсоидът е ротационен (около оста $z$), тъй като $x$ и $y$ имат еднакви знаменатели. Използваме обобщени сферични координати:
+\[
+x = a\sin\theta\cos\varphi,\quad y = a\sin\theta\sin\varphi,\quad z = b\cos\theta,\qquad \theta\in[0,\pi],\; \varphi\in[0,2\pi].
+\]
+
+Параметризацията е $\Phi(\theta,\varphi) = (a\sin\theta\cos\varphi,\; a\sin\theta\sin\varphi,\; b\cos\theta)$.
+
+Пресмятаме частните производни:
+\[
+\Phi_\theta = \left(a\cos\theta\cos\varphi,\; a\cos\theta\sin\varphi,\; -b\sin\theta\right),
+\]
+\[
+\Phi_\varphi = \left(-a\sin\theta\sin\varphi,\; a\sin\theta\cos\varphi,\; 0\right).
+\]
+
+Пресмятаме коефициентите на първата квадратична форма:
+\[
+E = \langle \Phi_\theta, \Phi_\theta \rangle = a^2\cos^2\theta\cos^2\varphi + a^2\cos^2\theta\sin^2\varphi + b^2\sin^2\theta = a^2\cos^2\theta + b^2\sin^2\theta.
+\]
+\[
+G = \langle \Phi_\varphi, \Phi_\varphi \rangle = a^2\sin^2\theta\sin^2\varphi + a^2\sin^2\theta\cos^2\varphi = a^2\sin^2\theta.
+\]
+\[
+F = \langle \Phi_\theta, \Phi_\varphi \rangle = -a^2\cos\theta\cos\varphi\sin\theta\sin\varphi + a^2\cos\theta\sin\varphi\sin\theta\cos\varphi + 0 = 0.
+\]
+
+Следователно $F = 0$, координатните линии са ортогонални.
+
+Елементът на лицето е
+\[
+\sqrt{EG - F^2} = \sqrt{(a^2\cos^2\theta + b^2\sin^2\theta) \cdot a^2\sin^2\theta} = a\sin\theta \sqrt{a^2\cos^2\theta + b^2\sin^2\theta}.
+\]
+
+Лицето на елипсоида се пресмята с интеграла
+\[
+S = \iint\limits_{[0,\pi]\times[0,2\pi]} a\sin\theta \sqrt{a^2\cos^2\theta + b^2\sin^2\theta} \, d\theta d\varphi.
+\]
+
+Интегрираме по $\varphi$:
+\[
+S = 2\pi a \int_0^\pi \sin\theta \sqrt{a^2\cos^2\theta + b^2\sin^2\theta} \, d\theta.
+\]
+
+Понеже $\sin\theta \ge 0$ за $\theta\in[0,\pi]$, няма проблем със знака. Полагаме $u = \cos\theta$, тогава $du = -\sin\theta\,d\theta$, при $\theta=0$: $u=1$, при $\theta=\pi$: $u=-1$. Следователно
+\[
+S = 2\pi a \int_{1}^{-1} \sqrt{a^2 u^2 + b^2(1-u^2)} \, (-du) = 2\pi a \int_{-1}^{1} \sqrt{a^2 u^2 + b^2 - b^2 u^2} \, du = 2\pi a \int_{-1}^{1} \sqrt{b^2 + (a^2-b^2)u^2} \, du.
+\]
+
+Функцията е четна, така че
+\[
+S = 4\pi a \int_0^1 \sqrt{b^2 + (a^2-b^2)u^2} \, du.
+\]
+
+Разглеждаме два случая.
+
+\textit{Случай 1: $a = b$.} 
+Тогава елипсоидът е сфера с радиус $a$. Формулата опростява:
+\[
+S = 4\pi a \int_0^1 \sqrt{a^2} \, du = 4\pi a \cdot a \cdot 1 = 4\pi a^2,
+\]
+което е лицето на сфера — вярно.
+
+\textit{Случай 2: $a \neq b$.} 
+Полагаме $k^2 = \frac{|a^2-b^2|}{b^2}$, но по-добре да запишем интеграла в зависимост от това дали $a>b$ или $a<b$.
+
+Ако $a > b$, то $a^2 - b^2 > 0$. Полагаме $u = \frac{b}{\sqrt{a^2-b^2}} \operatorname{tg} t$ или по-удобно: използваме формулата
+\[
+\int_0^1 \sqrt{\alpha^2 + \beta^2 u^2}\,du = \frac{1}{2} \left( \sqrt{\alpha^2+\beta^2} + \frac{\alpha^2}{\beta} \ln\left|\frac{\beta+\sqrt{\alpha^2+\beta^2}}{\alpha}\right| \right),
+\]
+но тук $\alpha^2 = b^2$, $\beta^2 = a^2-b^2$. Нека запишем стандартния интеграл:
+\[
+\int \sqrt{b^2 + c^2 u^2}\,du = \frac{u}{2}\sqrt{b^2 + c^2 u^2} + \frac{b^2}{2c} \ln\left| cu + \sqrt{b^2 + c^2 u^2} \right|, \quad c = \sqrt{a^2-b^2}.
+\]
+
+Тогава
+\[
+\int_0^1 \sqrt{b^2 + c^2 u^2}\,du = \left[ \frac{u}{2}\sqrt{b^2 + c^2 u^2} + \frac{b^2}{2c} \ln\left( cu + \sqrt{b^2 + c^2 u^2} \right) \right]_0^1.
+\]
+
+При $u=1$: $\sqrt{b^2 + c^2} = \sqrt{b^2 + a^2 - b^2} = a$, при $u=0$: $\sqrt{b^2} = |b| = b$ (понеже $b>0$), а $c\cdot0 + \sqrt{b^2} = b$, и $\ln(b)$ се появява с минус.
+
+Така
+\[
+\int_0^1 \sqrt{b^2 + c^2 u^2}\,du = \frac{1}{2} a + \frac{b^2}{2c} \ln\frac{c + a}{b} - 0 - \frac{b^2}{2c} \ln b = \frac{a}{2} + \frac{b^2}{2c} \ln\frac{a+c}{b}.
+\]
+
+Следователно за $a > b$:
+\[
+S = 4\pi a \left( \frac{a}{2} + \frac{b^2}{2\sqrt{a^2-b^2}} \ln\frac{a+\sqrt{a^2-b^2}}{b} \right) = 2\pi a^2 + \frac{2\pi a b^2}{\sqrt{a^2-b^2}} \ln\frac{a+\sqrt{a^2-b^2}}{b}.
+\]
+
+Ако $a < b$, то $a^2-b^2 < 0$. Тогава записваме
+\[
+\sqrt{b^2 + (a^2-b^2)u^2} = \sqrt{b^2 - (b^2-a^2)u^2}.
+\]
+Полагаме $c^2 = b^2-a^2 > 0$, тогава
+\[
+\int_0^1 \sqrt{b^2 - c^2 u^2}\,du = \frac{u}{2}\sqrt{b^2 - c^2 u^2} + \frac{b^2}{2c} \arcsin\frac{cu}{b} \Big|_0^1.
+\]
+При $u=1$: $\sqrt{b^2 - c^2} = \sqrt{b^2 - (b^2-a^2)} = a$, при $u=0$: $0$. Следователно
+\[
+\int_0^1 \sqrt{b^2 - c^2 u^2}\,du = \frac{1}{2} a + \frac{b^2}{2c} \arcsin\frac{c}{b}.
+\]
+
+Но $c/b = \sqrt{b^2-a^2}/b = \sqrt{1 - (a/b)^2}$, и $\arcsin\sqrt{1 - (a/b)^2} = \arccos(a/b)$. Тогава
+\[
+S = 4\pi a \left( \frac{a}{2} + \frac{b^2}{2\sqrt{b^2-a^2}} \arccos\frac{a}{b} \right) = 2\pi a^2 + \frac{2\pi a b^2}{\sqrt{b^2-a^2}} \arccos\frac{a}{b}.
+\]
+
+Забелязваме, че за $a < b$ можем да използваме хиперболични функции, но горният израз е напълно коректен. Често лицето на ротационен елипсоид се записва във вида:
+
+- При $a > b$ (сплеснат):
+\[
+S = 2\pi a^2 + \frac{2\pi a b^2}{\sqrt{a^2-b^2}} \ln\frac{a+\sqrt{a^2-b^2}}{b}.
+\]
+
+- При $a < b$ (издължен):
+\[
+S = 2\pi a^2 + \frac{2\pi a b^2}{\sqrt{b^2-a^2}} \arccos\frac{a}{b}.
+\]
+
+И двата случая могат да се обединят с помощта на ексцентрицитета.
+
+\[
+\boxed{S = 2\pi a^2 + \frac{2\pi a b^2}{\sqrt{|a^2-b^2|}} \cdot \begin{cases}
+\ln\dfrac{a+\sqrt{a^2-b^2}}{b}, & a > b, \\[6pt]
+\arccos\dfrac{a}{b}, & a < b, \\[6pt]
+1, & a = b.
+\end{cases}}
+\]
+
+
+
+\textbf{Задача 8(4) }Използвайте доказаното твърдение, за да покажете, че цилиндричните тела са множества, измерими по Пеано-Жордан. 
+
+\textbf{Решение.} 
+Нека $D \subset \mathbb{R}^2$ е измеримо по Пеано-Жордан компактно множество и $g_1,g_2 : D \to \mathbb{R}$ са непрекъснати функции с $g_1(x,y) \le g_2(x,y)$ за всяко $(x,y) \in D$.  
+Разглеждаме цилиндричното тяло
+\[
+K = \{(x,y,z) \in \mathbb{R}^3 \mid (x,y) \in D,\; g_1(x,y) \le z \le g_2(x,y)\}.
+\]
+
+Ще докажем, че $K$ е измеримо по Пеано-Жордан. За целта използваме критерия за измеримост: едно ограничено множество е измеримо по Пеано-Жордан точно тогава, когато контурът му е пренебрежим по Лебег.
+
+Тялото $K$ е ограничено, защото $D$ е компакт, а $g_1,g_2$ са непрекъснати върху компакт, следователно са ограничени. Нека $m \le g_1(x,y) \le g_2(x,y) \le M$ за всяко $(x,y) \in D$. Тогава $K \subset \Delta \times [m,M]$, където $\Delta$ е правоъгълник, съдържащ $D$.
+
+Контурът $\partial K$ се състои от три части:
+\[
+\partial K = S_1 \cup S_2 \cup S_3,
+\]
+където
+\begin{align*}
+S_1 &= \{(x,y,g_1(x,y)) \in \mathbb{R}^3 \mid (x,y) \in D\} \quad \text{(долна капачка)},\\
+S_2 &= \{(x,y,g_2(x,y)) \in \mathbb{R}^3 \mid (x,y) \in D\} \quad \text{(горна капачка)},\\
+S_3 &= \{(x,y,z) \in \mathbb{R}^3 \mid (x,y) \in \partial D,\; g_1(x,y) \le z \le g_2(x,y)\} \quad \text{(околна повърхнина)}.
+\end{align*}
+
+\textit{1. Пренебрежимост на $S_1$ и $S_2$.} 
+Множествата $S_1$ и $S_2$ са графики на непрекъснатите функции $g_1$ и $g_2$, дефинирани в компакта $D$. От Твърдение 4.5 следва, че графиките на непрекъснати функции върху компакт са пренебрежими по Лебег в $\mathbb{R}^3$. Следователно $S_1$ и $S_2$ са пренебрежими.
+
+\textit{2. Пренебрежимост на $S_3$.} 
+Тъй като $D$ е измеримо по Пеано-Жордан, контурът $\partial D$ е пренебрежим по Лебег в $\mathbb{R}^2$. Тогава за произволно $\varepsilon > 0$ съществуват изброимо много правоъгълници $\{\Delta_i\}_{i=1}^\infty$ такива, че
+\[
+\partial D \subset \bigcup_{i=1}^\infty \Delta_i \quad \text{и} \quad \sum_{i=1}^\infty \mu_2(\Delta_i) < \frac{\varepsilon}{M-m}.
+\]
+
+За всеки такъв правоъгълник $\Delta_i$ разглеждаме паралелепипеда $\Omega_i = \Delta_i \times [m,M]$. Тогава
+\[
+S_3 \subset \bigcup_{i=1}^\infty \Omega_i,
+\]
+и
+\[
+\sum_{i=1}^\infty \mu_3(\Omega_i) = \sum_{i=1}^\infty \mu_2(\Delta_i)(M-m) < \varepsilon.
+\]
+Следователно $S_3$ е пренебрежимо по Лебег.
+
+\textit{3. Заключение.} 
+Контурът $\partial K = S_1 \cup S_2 \cup S_3$ е обединение на три пренебрежими по Лебег множества, следователно е пренебрежим по Лебег. Тъй като $K$ е ограничено и $\partial K$ е пренебрежим, от критерия за измеримост по Пеано-Жордан следва, че $K$ е измеримо по Пеано-Жордан. $\blacksquare$
+
+
+\textbf{Задача 9(-) }Докажете, че криволинейните трапеци са измерими по Пеано-Жордан. 
+
+\textbf{Доказателство.} 
+Нека $D \subset \mathbb{R}^2$ е криволинеен трапец от вида
+\[
+D = \{(x,y) \in \mathbb{R}^2 \mid a \le x \le b,\; \varphi_1(x) \le y \le \varphi_2(x)\},
+\]
+където $\varphi_1,\varphi_2 : [a,b] \to \mathbb{R}$ са непрекъснати функции и $\varphi_1(x) \le \varphi_2(x)$ за всяко $x \in [a,b]$. (Случаят на криволинеен трапец спрямо $y$ е напълно аналогичен.)
+
+\textit{1. Ограниченост на $D$.} 
+Тъй като $\varphi_1$ и $\varphi_2$ са непрекъснати в компактния интервал $[a,b]$, те са ограничени. Следователно съществуват числа $m,M$ такива, че
+\[
+m \le \varphi_1(x) \le \varphi_2(x) \le M, \quad \forall x \in [a,b].
+\]
+Тогава $D \subset [a,b] \times [m,M]$, т.е. $D$ е ограничено множество.
+
+\textit{2. Контур на $D$.} 
+Контурът $\partial D$ се състои от четири части:
+\[
+\partial D = \Gamma_1 \cup \Gamma_2 \cup \Gamma_3 \cup \Gamma_4,
+\]
+където
+\begin{align*}
+\Gamma_1 &= \{(a,y) \mid y \in [\varphi_1(a),\varphi_2(a)]\} \quad \text{(лява вертикална отсечка)},\\
+\Gamma_2 &= \{(b,y) \mid y \in [\varphi_1(b),\varphi_2(b)]\} \quad \text{(дясна вертикална отсечка)},\\
+\Gamma_3 &= \{(x,\varphi_1(x)) \mid x \in [a,b]\} \quad \text{(долна капачка)},\\
+\Gamma_4 &= \{(x,\varphi_2(x)) \mid x \in [a,b]\} \quad \text{(горна капачка)}.
+\end{align*}
+
+\textit{3. Пренебрежимост на $\Gamma_1$ и $\Gamma_2$.} 
+$\Gamma_1$ и $\Gamma_2$ са вертикални отсечки в равнината. Те са изродени паралелотопи в $\mathbb{R}^2$ (например $\Gamma_1 \subset \{a\} \times [\varphi_1(a),\varphi_2(a)]$), следователно имат двумерна мярка нула и са пренебрежими по Лебег.
+
+\textit{4. Пренебрежимост на $\Gamma_3$ и $\Gamma_4$.} 
+$\Gamma_3$ и $\Gamma_4$ са графики на непрекъснатите функции $\varphi_1$ и $\varphi_2$, дефинирани в компактния интервал $[a,b]$. От Твърдение 4.5 (графиката на непрекъсната функция върху компакт е пренебрежимо множество в $\mathbb{R}^{n+1}$) следва, че $\Gamma_3$ и $\Gamma_4$ са пренебрежими по Лебег в $\mathbb{R}^2$.
+
+\textit{5. Заключение.} 
+Контурът $\partial D$ е крайно обединение на пренебрежими множества, следователно е пренебрежим по Лебег. Тъй като $D$ е ограничено и контурът му е пренебрежим по Лебег, от критерия за измеримост по Пеано-Жордан (Теорема 4.3) следва, че $D$ е измеримо по Пеано-Жордан.
+
+Случаят на криволинеен трапец спрямо $y$,
+\[
+D = \{(x,y) \mid c \le y \le d,\; \psi_1(y) \le x \le \psi_2(y)\},
+\]
+се доказва напълно аналогично. $\blacksquare$
+
+
+\textbf{Задача 10(-) }Пресметнете производната на $f(t) = \ln\|\alpha(t)\|$, където $\alpha(t)$ е гладка векторна функция на скаларния аргумент $t$, която не се анулира.
+
+\textbf{Решение.} 
+Нека $\alpha(t) = (\alpha_1(t),\alpha_2(t),\dots,\alpha_n(t))$ е гладка векторна функция, дефинирана в интервал $\Delta \subset \mathbb{R}$, със стойности в $\mathbb{R}^n$, и $\|\alpha(t)\| \neq 0$ за всяко $t \in \Delta$.
+
+Тогава
+\[
+f(t) = \ln\|\alpha(t)\| = \ln\sqrt{\langle \alpha(t),\alpha(t)\rangle} = \frac12 \ln\langle \alpha(t),\alpha(t)\rangle.
+\]
+
+Диференцираме, използвайки правилото за диференциране на сложна функция и правилото за диференциране на скаларно произведение:
+\[
+f'(t) = \frac12 \cdot \frac{1}{\langle \alpha(t),\alpha(t)\rangle} \cdot \frac{d}{dt}\langle \alpha(t),\alpha(t)\rangle = \frac{1}{2\|\alpha(t)\|^2} \cdot \bigl( \langle \dot\alpha(t),\alpha(t)\rangle + \langle \alpha(t),\dot\alpha(t)\rangle \bigr).
+\]
+
+Тъй като скаларното произведение е симетрично, двата члена са равни, следователно
+\[
+f'(t) = \frac{1}{2\|\alpha(t)\|^2} \cdot 2\langle \dot\alpha(t),\alpha(t)\rangle = \frac{\langle \dot\alpha(t),\alpha(t)\rangle}{\|\alpha(t)\|^2}.
+\]
+
+Можем да запишем и във вида
+\[
+f'(t) = \frac{\langle \dot\alpha(t),\alpha(t)\rangle}{\|\alpha(t)\|^2}.
+\]
+
+С това производната е пресметната. $\blacksquare$
+
+\textbf{Задача 11(5) }Пресметнете потенциала на гравитационното поле $F(x) = -x/\|x\|^3$, $x \neq (0,0,0)$.
+
+\textbf{Решение.} 
+Нека $x = (x_1,x_2,x_3) \in \mathbb{R}^3 \setminus \{0\}$ и $r = \|x\| = \sqrt{x_1^2 + x_2^2 + x_3^2}$. Тогава
+\[
+F(x) = \left( -\frac{x_1}{r^3},\; -\frac{x_2}{r^3},\; -\frac{x_3}{r^3} \right).
+\]
+
+Търсим функция $u : \mathbb{R}^3 \setminus \{0\} \to \mathbb{R}$ такава, че $\nabla u(x) = F(x)$.
+
+Забелязваме, че
+\[
+\frac{\partial}{\partial x_i} \left( \frac{1}{r} \right) = \frac{\partial}{\partial x_i} (x_1^2 + x_2^2 + x_3^2)^{-1/2} = -\frac12 (x_1^2+x_2^2+x_3^2)^{-3/2} \cdot 2x_i = -\frac{x_i}{r^3}.
+\]
+
+Следователно
+\[
+F_i(x) = -\frac{x_i}{r^3} = \frac{\partial}{\partial x_i} \left( \frac{1}{r} \right).
+\]
 
 Така получаваме, че
 \[
@@ -93,4 +2059,73 @@ D = \{0\} \cup \left\{ \frac{1}{k\pi} \;:\; k \in \mathbb{Z},\; |k| \ge 1 \right
 \textbf{Задача 5(-) }Представете тройния интеграл $\iiint_K g(x,y,z) \,dxdydz$ като повторен. Тук $g$ е непрекъсната функция, дефинирана върху тялото на Вивиани $K = \{(x,y,z)\in\mathbb{R}^3: x^2+y^2+z^2 \le 1,\; x^2+y^2 \le x\}$. 
 
 \textbf{Задача 6(7) }Нека $\varphi_1$ и $\varphi_2$ ($\varphi_1<\varphi_2$) са дължините на два меридиана, а $\psi_1$ и $\psi_2$ ($\psi_1<\psi_2$) са ширините на два паралела (в радиани) върху сфера с радиус $R$. Пресметнете площта на частта от сферата, заключена между тези два паралела и два меридиана. 
+
+\textbf{Задача 7(7) }Да се намери масата на материална сфера, ако повърхностната ѝ плътност във всяка точка е равна на разстоянието от тази точка до вертикалния диаметър. 
+
+\textbf{Задача 8(7) }Пресметнете гравитационната сила, с която хомогенната повърхнина $\varphi(\theta,t) = (R\cos\theta, R\sin\theta, t)$, $(\theta,t)\in[0,2\pi]\times[0,h]$ (цилиндър с височина $h$ и радиус на основата $R$) притегля материална точка с маса $m$, разположена в началото на координатната система (центърът на долната основа).
+
+\textbf{Задача 9(8) }Намерете точка $(x_0,y_0,z_0)$ такава, че изтласкващата сила на Архимед не създава въртящ момент спрямо нея. 
+
+\textbf{Задача 10(7,8-) }Напишете дефиницията за повърхнинно едносвързана област. 
+
+\textbf{Задача 11(2) }Дефинирайте сума на Риман за $f$. Дефинирайте граница на риманови суми, когато диаметърът на подразбиването клони към нула. Докажете, че ако римановите суми имат граница, то функцията е ограничена. 
+
+\textbf{Задача 12(4) }Пресметнете градиента на функцията $f(x) = (\operatorname{arctg}\|x\|)\cdot\langle x,F(x)\rangle$, където $x = (x_1,x_2,x_3) \in \mathbb{R}^3$ и $F$ е векторното поле, дефинирано с $F(x) = (x_2x_3,\; x_3x_1,\; x_1x_2)$. 
+
+\textbf{Задача 13(4,5-) }Намерете потенциал за полето $F(x,y) = (2\ln x + y/x + 2,\; \ln x)$. 
+
+\textbf{Задача 14(4,5-) }Намерете потенциал за полето $F(x,y) = (e^x(x+\ln y+1),\; e^x/y)$. В каква област е дефинирано полето $F$? Едносвързана ли е тази област?
+
+\textbf{Задача 15(4-) }Намерете потенциал на полето $F$. Единствен ли е отговорът? 
+
+\textbf{Задача 16(5-) }(б) Потенциално ли е това поле? Ако отговорът Ви е "да", намерете потенциала. 
+
+\section*{1}
+
+\textbf{Задача 1(6-) }Да разгледаме гладкото векторно поле $F(x) = x \operatorname{tg}\|x\|$, където $x = (x_1,x_2,x_3) \in \mathbb{R}^3$. (а) Пресметнете $\operatorname{div} F(x)$ и $\operatorname{rot} F(x)$.
+
+\textbf{Задача 2(1-) }Пресметнете обема на пресечения конус, определен с $x^2 \ge y^2 + z^2$, $x \in [1,2]$.
+
+\textbf{Задача 3(3-) }Формулирайте принципа на Кавалиери. Използвайте го, за да изведете формулата за обем на ротационно тяло. Като нейно приложение изведете формулата за обем на прав кръгов конус с радиус на основата $R$ и височина $H$. 
+
+\textbf{Задача 4(5-) }Изведете формулата за площ на повърхнината на ротационно тяло. 
+
+\textbf{Задача 5(9-) }Формулирайте теоремата на Стокс. 
+
+\textbf{Задача 6(3) }Докажете, че липшицовите равнинни криви (с компактна параметризация) са пренебрежими подмножества на равнината. 
+
+\textbf{Задача 7(4) }Докажете, че неизроден паралелотоп в $\mathbb{R}^n$ не е пренебрежим. Като следствие покажете, че ако едно подмножество на $\mathbb{R}^n$ има непразна вътрешност, то не е пренебрежимо по Лебег. 
+
+\textbf{Задача 8(3) }Докажете, че обединение на две множества, измерими по Пеано-Жордан, е множество, измеримо по Пеано-Жордан. 
+
+\textbf{Задача 9(5) }Дефинирайте линейна свързаност и топологична свързаност на дадено подмножество на $\mathbb{R}^n$. Докажете, че тези две понятия съвпадат за отворените подмножества на $\mathbb{R}^n$. 
+
+\textbf{Задача 10(3) }Формулирайте и докажете теоремата за средните стойности в интегралното смятане (в $\mathbb{R}^n$).
+
+\textbf{Задача 11(1) }Напишете дефиницията за равномерна непрекъснатост за функция на $n$ променливи. Докажете теоремата на Кантор (непрекъсната функция върху компакт е равномерно непрекъсната) или (по-добре) нейното обобщение, което използвахме. 
+
+\textbf{Задача 12(-) }(а) В кои точки на равнината това изображение има пълен ранг? 
+(б) Намерете коефициентите на първата квадратична форма на повърхнината $S$, зададена с $\phi$ (параметрите $u$ и $v$ се менят в областта, която сте определили в (а)).
+(в) Докажете, че координатните линии върху $S$ са перпендикулярни.
+
+\textbf{Задача 13(6-) }Пресметнете повърхнинния интеграл от първи род $\iint_S z \,ds$, където $S$ е параметрично зададената хеликоидна повърхнина $\varphi(u,v) = (u\cos v,\; u\sin v,\; v)$, $(u,v) \in [0,a]\times[0,2\pi]$.
+
+\textbf{Задача 14(7-) }Пресметнете площта на горната основа на "тялото на Вивиани": $z = \sqrt{1-x^2-y^2}$, $x^2+y^2 \le x$. 
+
+\textbf{Задача 15(6-) }Опишете релативния контур $\partial T$ (спрямо сферата $S := \{x^2+y^2+z^2 = r^2\}$) на сферичния триъгълник $T := \{(x,y,z)\in\mathbb{R}^3: x^2+y^2+z^2 = r^2,\; x\ge0,\; y\ge0,\; z\ge0\}$. Намерете координатите на центъра на масите на хомогенна материална нишка, разположена по $\partial T$. 
+
+\textbf{Задача 16(4-) }Дайте дефиниция на ориентация върху дадена повърхнина. 
+
+\textbf{Задача 17(4-) }Напишете явно единичната нормала към коничната повърхнина $S = \{(x,y,z)\in\mathbb{R}^3: z^2 = 2(x^2+y^2),\; 0<z<5\}$, която сочи извън тялото $K = \{(x,y,z)\in\mathbb{R}^3: 2(x^2+y^2) \le z^2,\; 0\le z\le 5\}$.
+
+\textbf{Задача 18(5-) }Разгледайте в $\mathbb{R}^3$ системата $x^2+y^2+z^2 = 1$, $x^2+y^2 = x$. Намерете максимално отворено подмножество на пространството $\mathbb{R}^3$, в което тази система определя гладка повърхнина. 
+
+\textbf{Задача 19(5-) }Разгледайте в $\mathbb{R}^3$ уравнението $x^3 + y^3 - 3xy = 0$. Намерете максимално отворено подмножество на пространството $\mathbb{R}^3$, в което това уравнение определя гладка повърхнина.
+
+\textbf{Задача 20(4-) }Кое е множеството от точките на прекъсване на характеристичната функция на $K$, където $K$ е множеството, дефинирано в задача 2?
+
+\textbf{Задача 21(7-2014)} Разгледайте криволинейния интеграл от втори род $I := \oint_L \frac{x\,dy - y\,dx}{x^2+xy+y^2}$, където $L$ е окръжност с център началото на координатната система и радиус $r > 0$, обикаляна в посока, обратна на часовниковата стрелка. Докажете, че $I = 2S$, където $S$ е лицето на елипсата $\{x^2+xy+y^2 \le 1\}$.
+
+\textbf{Задача 22(8-2016)} Нека $\Omega$ е ограничена област в $\mathbb{R}^3$ и нейната граница $\partial\Omega$ е ориентирана с външната (за $\Omega$) нормала $n$. Нека $F$ е гладко векторно поле, дефинирано в околност на $\Omega$. Напишете полето $n \times F$ и приложете за всяка от координатите на интеграла $\iint_{\partial\Omega} (n \times F) \,ds$ формулата на Гаус-Остроградски по подобен начин на това, което правихме, за да докажем закона на Архимед. Горният интеграл се нарича завъртане на полето $F$ по границата на $\Omega$. Нека сега $F$ е гладко векторно поле, дефинирано в околност на точката $x \in \mathbb{R}^3$. Нека $S_\varepsilon$ е сферата с център $x$ и радиус $\varepsilon > 0$. Използвайте първата част на задачата, за да докажете, че $\operatorname{rot} F(x) = \displaystyle \lim_{\varepsilon\to 0} \frac{\iint_{S_\varepsilon} (n \times F) \,ds}{\frac{4}{3}\pi \varepsilon^3}$.
+
 \end{document}
